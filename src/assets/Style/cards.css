@@ -1,0 +1,119 @@
+    /*  Helper Styles */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: white;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /* Card Styles */
+
+    .card-sl:hover {
+        box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+          transform: scale(1.05, 1.05);
+      }
+
+    .card-sl {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: all 0.8s ease;
+    }
+    
+    .card-image img {
+        max-height: 10vw;
+        max-width: 100%;
+        border-radius: 8px 8px 0px 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card-action {
+        position: relative;
+        float: right;
+        margin-top: -25px;
+        margin-right: 20px;     
+        z-index: 2;
+        color: #E26D5C;
+        background: white;
+        border-radius: 100%;
+        padding: 15px;
+        font-size: 15px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .card-action:hover {
+        color: white;
+        background: #E26D5C;
+        -webkit-animation: pulse 1.5s infinite;
+    }
+
+    .card-heading {
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: bold;
+        background: white;
+        padding: 10px 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .card-text {
+        padding: 10px 15px;
+        background: white;
+        font-size: 1.5vh;
+        height: 3.5em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.5em;
+        color: #636262;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .card-button {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        width: 100%;
+        background-color: #f57a00;
+        color: #fff;
+        border-radius: 0 0 8px 8px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .card-button:hover {
+        text-decoration: none;
+        background-color: #e97400;
+        color: #fff;
+
+    }
+
+
+    @-webkit-keyframes pulse {
+        0% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+        }
+
+        70% {
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+        }
+
+        100% {
+            -moz-transform: scale(0.9);
+            -ms-transform: scale(0.9);
+            -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+            box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+        }
+    }
