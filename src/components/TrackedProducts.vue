@@ -1,10 +1,13 @@
 <template>
-   <div>
-       <p> İzlenen ürünler yok. </p>
-   </div>
+    <div>
+        <AddNewProductDialog v-if="true"></AddNewProductDialog>
+    </div>
 </template>
 <script>
+import AddNewProductDialog from './AddNewProductDialog';
 export default {
-    
+    components : {
+        AddNewProductDialog
+    }
 }
 </script>
