@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid" style="margin-top:50px; margin-bottom: 150px; padding: 100px;">
             <div class="row">
-                <TrackedProductCard v-for="trackedProduct in trackedProductList">
+                <TrackedProductCard v-for="trackedProduct in trackedProductList" :key="trackedProduct.productTrackedId">
                     <div class="card-sl" @click="HandleSelectItem(trackedProduct)">
                         <router-link to="/trackedproducts/trackedproduct" > 
                             <div class="card-image text-center"><img :src="trackedProduct.image" alt=""></div>
@@ -26,6 +26,7 @@
 <script>
 import TrackedProductCard from './TrackedProductCard';
 import axios from 'axios';
+import { eventBus } from '../main';
 
 export default  {
     components : {
@@ -37,12 +38,11 @@ export default  {
         }
     },
     methods: {
-        GetAllTrackedProducts(){
+        GetAllTrackedProducts(){    
             this.trackedProductList.splice(0, this.trackedProductList.length);
             axios.get('https://localhost:7176/api/TrackedProducts/GetAllTrackedProduct')
             .then(response => {
                 let data = response.data.data;
-                console.log(data);
                 data.forEach(element => {
                 this.trackedProductList.push(element);
              });
@@ -51,7 +51,7 @@ export default  {
         },
         
         HandleSelectItem(item){
-            console.log(item);
+            eventBus.$emit("item",item);
         }
     },
     

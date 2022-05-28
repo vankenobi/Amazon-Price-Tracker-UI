@@ -13,7 +13,7 @@
 
     </div>
         <div class="row">
-            <ProductCard  v-for="product in productList">
+            <ProductCard  v-for="product in productList" :key="product.id">
                     <div class="card-sl">
                     <div class="card-image text-center"><img :src="product.image" alt=""></div>
                     <a class="card-action" href="#"><i class='fa fa-heart' ></i></a>
