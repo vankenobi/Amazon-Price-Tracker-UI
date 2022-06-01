@@ -13,10 +13,10 @@
                                 {{ trackedProduct.description }}
                             </div>
                             <div class="card-text">
-                                {{ trackedProduct.currentPrice }} ₺
+                                {{ new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(trackedProduct.currentPrice) }} 
                             </div>
                         </router-link>
-                        <a target="_blank" :href="trackedProduct.url" class="card-button">Purchase</a>
+                        <a target="_blank" :href="trackedProduct.url" class="card-button-product">Purchase</a>
                     </div>
                 </TrackedProductCard>
             </div>

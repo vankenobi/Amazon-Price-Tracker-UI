@@ -6,6 +6,7 @@
                 <img :src="trackedProductItem.image" alt=""> 
             </div>
         </div>
+        
         <div class="row mt-3">
             <div class="text-center" style="color: rgb(9, 112, 9);">
                 {{ trackedProductItem.stockState }}
@@ -18,10 +19,10 @@
                 <i class="fa fa-star" v-for="index in (5 - parseInt(trackedProductItem.rate))"></i>
             </div>
         </div>
-        
+
         <div class="row">
             <div style="font-size: 3em;" class="text-center">
-                <p>{{ trackedProductItem.currentPrice }} ₺</p>
+                <p>{{ new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(trackedProductItem.currentPrice)  }}</p>
             </div>
         </div>
 
@@ -30,104 +31,110 @@
                 <p>{{ trackedProductItem.productName }}</p>
             </div>
         </div>
-        
-        <div class="row">
+
+        <div class="row mt-3">
+                <ul class="list-group mx-auto ">
+                    <li v-for="item in trackedProductItem.technicalDetails" class="list-group-item p-3" style="background-color: #f8efed; border-color: #242f41;"> {{ item }} </li>
+                </ul>     
+        </div>
+
+        <div class="row mt-3">
             <div id="chart">
-                <vueComponent type="area" height="350" :options="chartOptions" :series="series"></vueComponent>
+                <vueComponent type="area" height="500" :options="chartOptions" :series="series"></vueComponent>
             </div>
         </div>
-
-        <div id="accordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Collapsible Group Item #1
-                    </button>
-                </h5>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <ul>
-                        <li>Cras justo odio</li>
-                        <li>Dapibus ac facilisis in</li>
-                        <li>Morbi leo risus</li>
-                        <li>Porta ac consectetur ac</li>
-                        <li>Vestibulum at eros</li>
-                    </ul>
-                </div>
-                </div>
-            </div>
+        
+        
         </div>
-
-        <div class="row mt-5">
-            <div class="container col-sm-6">
-                <p style="font-size: x-large;">Ürün Özellikleri</p>
-                <ul v-for="item in trackedProductItem.technicalDetails">
-                    <li>{{ item }}</li>
-                </ul>
-            </div>
-        </div>
-
-        {{ trackedProductItem.priceHistory }}
-
+            
     </div>
-    
-    
-   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { eventBus } from '../main';
 import VueApexCharts from 'vue-apexcharts';
+import ProductTechnicalDetails from '../components/ProductTechnicalDetails';
+
+var moment = require('moment');
+
 
 export default {
     components : {
-        vueComponent : VueApexCharts
+        vueComponent : VueApexCharts,
     },
     data() {
         return {
+            moment:moment,
+
             trackedProductItem : {},
             
             series: [{
-            name: 'series1',
-            data: [31, 40, 28, 51, 42, 109, 100]
-            }, {
-            name: 'series2',
-            data: [11, 32, 45, 32, 34, 52, 41]
-            }],
+            name: 'Price',
+            data: []
+            },],
             chartOptions: {
             chart: {
               height: 350,
               type: 'area'
             },
             dataLabels: {
-              enabled: false
+              enabled: true
             },
             stroke: {
-              curve: 'smooth'
+              curve: 'stepline',
+
             },
             xaxis: {
               type: 'datetime',
-              categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+              categories: [],
+              labels:  {
+                
+              }
             },
-            tooltip: {
-              x: {
-                format: 'dd/MM/yy HH:mm'
-              },
-            },
+            annotations: {
+            yaxis: [
+                {
+                y: null,
+                borderColor: 'red',
+                label: {
+                    borderColor: 'red',
+                    style: {
+                    color: '#fff',
+                    background: 'red'
+                    },
+                    text: null
+                }
+                }
+            ]
+            }
+            
           },
           
       }
     },
      created() {
         eventBus.$on("item",(selectedTrackedItem) => {
-        this.trackedProductItem = selectedTrackedItem });
-        console.log(this.trackedProductItem);
+        this.trackedProductItem = selectedTrackedItem
+        this.priceHistoryParser(selectedTrackedItem.priceHistory)
+        
+        this.chartOptions.annotations.yaxis[0].y = this.trackedProductItem.targetPrice
+        this.chartOptions.annotations.yaxis[0].label.text = 'Target Price: ' + this.trackedProductItem.targetPrice.toString()
+        });
+        
      },
-}
+     methods: {
+         priceHistoryParser(priceHistory){  
+             priceHistory.forEach(element => {
+                var date = element.split('-')[0]; // get date in string
+
+                this.chartOptions.xaxis.categories.push(moment(date,'DD.MM.YYYY hh:mm:ss').toISOString());
+                this.series[0].data.push(element.split('-')[1].replaceAll('.','/'));
+             });
+
+         }
+     },
+} 
 </script>
 
 <style>

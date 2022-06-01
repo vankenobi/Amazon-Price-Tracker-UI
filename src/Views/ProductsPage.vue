@@ -12,7 +12,7 @@ export default {
     components: {
         SideBar,
         Header,
-        Products
+        Products,
   }
 }
 </script>
