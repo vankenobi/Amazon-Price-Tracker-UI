@@ -2,25 +2,10 @@
   <div
     class="container-fluid"
     style="margin-top:50px; margin-bottom: 150px; padding: 100px;">
-    <div>
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <input
-            v-model="url"
-            type="text"
-            class="form-control"
-            placeholder="Enter the Url"
-          />
-        </div>
-        <div class="col-md-1">
-          <button @click="AddNewProduct()" class="btn btn-primary">
-            Add New Product
-          </button>
-        </div>
-        <AddNewProductDialog></AddNewProductDialog>
-      </div>
-    </div>
 
+    <AddNewProductDialog></AddNewProductDialog>
+
+    
     <div class="row">
       <ProductCard v-for="product in productList" :key="product.id">
         <div class="card-sl">
