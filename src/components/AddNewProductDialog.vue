@@ -1,20 +1,5 @@
 <template>
   <div class="container">
-    <!-- alert -->
-    <div class="alert alert-success d-flex align-items-center" role="alert">
-      <svg
-        class="bi flex-shrink-0 me-2"
-        width="24"
-        height="24"
-        role="img"
-        aria-label="Success:"
-      >
-        <use xlink:href="#check-circle-fill" />
-      </svg>
-      <div>
-        An example success alert with an icon
-      </div>
-    </div>
 
     <!-- Button trigger modal -->
     <button
@@ -78,6 +63,7 @@
 </template>
 <script>
 import axios from "axios";
+import { eventBus } from "../main";
 export default {
   data() {
     return {
@@ -96,8 +82,22 @@ export default {
         )
         .then(response => {
           if (response.data.responseCode === 200) {
+            eventBus.$emit("notification",{ errorNotification: false,
+                                            warningNotification: false,
+                                            successNotification: true });
           }
-          console.log(response);
+
+          else if (response.data.responseCode === 400) {
+            eventBus.$emit("notification",{ errorNotification: false,
+                                            warningNotification: true,
+                                            successNotification: false });
+          }
+
+          else{
+            eventBus.$emit("notification",{ errorNotification: true,
+                                            warningNotification: false,
+                                            successNotification: true });
+          }
         })
         .catch(e => console.log(e));
     }
