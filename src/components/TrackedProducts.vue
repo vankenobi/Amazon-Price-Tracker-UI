@@ -57,6 +57,9 @@ export default  {
     
     created() {
         this.GetAllTrackedProducts();
+        eventBus.$on("notification",(item) => {
+            console.log(item);
+        })
     },
 }
 </script>

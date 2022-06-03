@@ -3,8 +3,22 @@
     class="container-fluid"
     style="margin-top:50px; margin-bottom: 150px; padding: 100px;">
 
+      <div v-show="successNotification" class="alert alert-success">
+        <strong>Success!</strong> New product added.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div v-show="warningNotification" class="alert alert-warning">
+        <strong>Warning!</strong> Product already exists.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div v-show="errorNotification" class="alert alert-danger">
+        <strong>Error!</strong> Error adding product.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+   
+    <!-- alert -->
+    
     <AddNewProductDialog></AddNewProductDialog>
-
     
     <div class="row">
       <ProductCard v-for="product in productList" :key="product.id">
@@ -43,6 +57,7 @@
 import ProductCard from "./ProductCard";
 import axios from "axios";
 import AddNewProductDialog from "./AddNewProductDialog";
+import { eventBus } from "../main";
 
 export default {
   components: {
@@ -53,7 +68,10 @@ export default {
     return {
       productList: [],
       url: "",
-      dialogState: false
+      dialogState: false,
+      successNotification : false,
+      warningNotification : false,
+      errorNotification : false
     };
   },
   methods: {
@@ -84,10 +102,28 @@ export default {
           });
         })
         .catch(e => console.log(e));
+    },
+
+    showTheAlert(item){
+      this.successNotification = item.successNotification;;
+      this.warningNotification = item.warningNotification;
+      this.errorNotification = item.errorNotification;
+    },
+
+    /*
+    closeTheAlerts(){
+      this.successNotification = false;
+      this.warningNotification = false;
+      this.errorNotification = false;
     }
+  */
   },
 
   created() {
+    eventBus.$on("notification",(item) => {
+      this.showTheAlert(item);
+    });
+    
     this.GetAllProducts();
   }
 };
