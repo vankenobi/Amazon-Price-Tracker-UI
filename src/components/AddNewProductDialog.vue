@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div >
 
     <!-- Button trigger modal -->
     <button
@@ -7,11 +7,12 @@
       class="btn btn-success"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
-      style="font-weight: 400;"
+      style="font-weight: 400; "
     >
       Add New Product <i class="bx bx-plus-circle"></i>
     </button>
     <!-- Modal -->
+
     <div
       class="modal fade"
       id="exampleModal"

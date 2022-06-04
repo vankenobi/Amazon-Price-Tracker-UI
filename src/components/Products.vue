@@ -18,6 +18,8 @@
    
     <!-- alert -->
     
+    
+    <TrackTheProductDialogVue></TrackTheProductDialogVue>
     <AddNewProductDialog></AddNewProductDialog>
     
     <div class="row">
@@ -43,7 +45,16 @@
               }}
             </div>
           </div>
-          <a :href="product.url" class="card-button-track">Track the product</a>
+          
+            <button
+            type="button"
+            class=" card-button-track"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal2"
+            @click="HandleSelectItem(product)"
+          >
+            Track The Product
+          </button>
           <a :href="product.url" class="card-button-product"
             >Go to the product</a
           >
@@ -58,11 +69,14 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 import AddNewProductDialog from "./AddNewProductDialog";
 import { eventBus } from "../main";
+import TrackTheProductDialogVue from "./TrackTheProductDialog.vue";
+
 
 export default {
   components: {
     ProductCard,
-    AddNewProductDialog
+    AddNewProductDialog,
+    TrackTheProductDialogVue
   },
   data() {
     return {
@@ -104,19 +118,17 @@ export default {
         .catch(e => console.log(e));
     },
 
+    HandleSelectItem(item){
+      eventBus.$emit("AddNewTrackedItem",item);
+    },
+
     showTheAlert(item){
       this.successNotification = item.successNotification;;
       this.warningNotification = item.warningNotification;
       this.errorNotification = item.errorNotification;
     },
 
-    /*
-    closeTheAlerts(){
-      this.successNotification = false;
-      this.warningNotification = false;
-      this.errorNotification = false;
-    }
-  */
+  
   },
 
   created() {

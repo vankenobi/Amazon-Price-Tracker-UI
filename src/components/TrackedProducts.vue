@@ -3,6 +3,7 @@
             <div class="row">
                 <TrackedProductCard v-for="trackedProduct in trackedProductList" :key="trackedProduct.productTrackedId">
                     <div class="card-sl" @click="HandleSelectItem(trackedProduct)">
+                    <div style="height: 500px;">
                         <router-link to="/trackedproducts/trackedproduct" > 
                             <div class="card-image text-center"><img :src="trackedProduct.image" alt=""></div>
                             <a class="card-action" href="#"><i class='fa fa-heart' ></i></a>
@@ -16,6 +17,7 @@
                                 {{ new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(trackedProduct.currentPrice) }} 
                             </div>
                         </router-link>
+                    </div>
                         <a target="_blank" :href="trackedProduct.url" class="card-button-product">Purchase</a>
                     </div>
                 </TrackedProductCard>
@@ -27,7 +29,7 @@
 import TrackedProductCard from './TrackedProductCard';
 import axios from 'axios';
 import { eventBus } from '../main';
-
+import PrimeVue from 'primevue/config';
 export default  {
     components : {
         TrackedProductCard

@@ -1,0 +1,33 @@
+.v-counter {
+    border-radius: 32px;
+    max-width: 89px;
+    overflow: auto;
+    padding: 0px 4px;
+    border: 1px solid #323140;
+    margin: 10px;
+}
+
+.v-counter input[type=button]:hover {
+    color: black;
+    font-weight: bold;
+    background-color: transparent;
+}
+.v-counter span {
+   
+    font-size: 13px;
+    color: black;
+    font-family: 'Open Sans';
+}
+.v-counter input[type=button], input[type=text] {
+    display: inline-block;
+    width: 20px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 0px;
+    color: black;
+    height: 33px;
+    font-family: 'Open Sans';
+}
