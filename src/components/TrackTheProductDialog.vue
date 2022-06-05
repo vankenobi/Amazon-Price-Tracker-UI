@@ -77,7 +77,7 @@
             >
               Close
             </button>
-            <button @click="trackTheProduct" type="button" class="btn btn-primary" style="background-color: #1c2431;">Track the product</button>
+            <button @click="trackTheProduct" data-bs-dismiss="modal" type="button" class="btn btn-primary" style="background-color: #1c2431;">Track the product</button>
           </div>
         </div>
       </div>
@@ -116,15 +116,21 @@ export default {
             )
             .then(response => {
             if (response.data.responseCode === 200) {
-            console.log("Başarılı")
+              eventBus.$emit("notificationForNewTracking",{ errorTrackedNotification: false,
+                                            warningTrackedNotification: false,
+                                            successTrackedNotification: true });
             }
 
             else if (response.data.responseCode === 400) {
-                console.log("Zaten mevcut");
+               eventBus.$emit("notificationForNewTracking",{ errorTrackedNotification: false,
+                                            warningTrackedNotification: true,
+                                            successTrackedNotification: false });
             }
 
             else{
-                console.log("Hata");
+                eventBus.$emit("notificationForNewTracking",{ errorTrackedNotification: true,
+                                                warningTrackedNotification: false,
+                                                successTrackedNotification: false });
             }
             })
             .catch(e => console.log(e));

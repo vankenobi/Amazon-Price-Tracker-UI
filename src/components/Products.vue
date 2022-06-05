@@ -3,7 +3,7 @@
     class="container-fluid"
     style="margin-top:50px; margin-bottom: 150px; padding: 100px;">
 
-      <div v-show="successNotification" class="alert alert-success">
+    <div v-show="successNotification" class="alert alert-success">
         <strong>Success!</strong> New product added.
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
@@ -15,9 +15,20 @@
         <strong>Error!</strong> Error adding product.
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
-   
-    <!-- alert -->
+    <div v-show="successTrackedNotification" class="alert alert-success">
+        <strong>Success!</strong> The product is being tracked successfully.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div v-show="warningTrackedNotification" class="alert alert-warning">
+        <strong>Warning!</strong> The product is already being tracked.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div v-show="errorTrackedNotification" class="alert alert-danger">
+        <strong>Error!</strong> The product cannot be tracked.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
     
+    <!-- alert -->
     
     <TrackTheProductDialogVue></TrackTheProductDialogVue>
     <AddNewProductDialog></AddNewProductDialog>
@@ -85,7 +96,10 @@ export default {
       dialogState: false,
       successNotification : false,
       warningNotification : false,
-      errorNotification : false
+      errorNotification : false,
+      successTrackedNotification : false,
+      warningTrackedNotification : false,
+      errorTrackedNotification : false,
     };
   },
   methods: {
@@ -122,20 +136,40 @@ export default {
       eventBus.$emit("AddNewTrackedItem",item);
     },
 
-    showTheAlert(item){
+    closeTheAllNotifications (){
+      this.successNotification = false;
+      this.warningNotification = false;
+      this.errorNotification = false;
+      this.successTrackedNotification = false;
+      this.warningTrackedNotification = false;
+      this.errorTrackedNotification = false;
+    },
+
+    showTheNewProductAlert(item){
       this.successNotification = item.successNotification;;
       this.warningNotification = item.warningNotification;
       this.errorNotification = item.errorNotification;
+      this.closeTheAllNotifications();
     },
 
+    showTheNewtrackedAlert(item){
+      this.successTrackedNotification = item.successTrackedNotification;;
+      this.warningTrackedNotification = item.warningTrackedNotification;
+      this.errorTrackedNotification = item.errorTrackedNotification;
+      this.closeTheAllNotifications();
+    },
   
   },
 
   created() {
     eventBus.$on("notification",(item) => {
-      this.showTheAlert(item);
+      this.showTheNewProductAlert(item);
     });
-    
+
+    eventBus.$on("notificationForNewTracking",(item) => {
+      this.showTheNewtrackedAlert(item);
+    });
+
     this.GetAllProducts();
   }
 };
