@@ -2,9 +2,9 @@
     <div class="container-fluid" style="margin-top:50px; margin-bottom: 150px; padding: 100px;">
             <div class="row">
                 <TrackedProductCard v-for="trackedProduct in trackedProductList" :key="trackedProduct.productTrackedId">
-                    <div class="card-sl" @click="HandleSelectItem(trackedProduct)">
+                    <div class="card-sl" @click="HandleSelectItem(trackedProduct)">     
                     <div style="height: 500px;">
-                        <router-link to="/trackedproducts/trackedproduct" > 
+                        <router-link to="/trackedproducts/trackedproduct"> 
                             <div class="card-image text-center"><img :src="trackedProduct.image" alt=""></div>
                             <a class="card-action" href="#"><i class='fa fa-heart' ></i></a>
                             <div class="card-heading" >
