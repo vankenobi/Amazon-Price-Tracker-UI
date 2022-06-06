@@ -16,7 +16,7 @@
         <div class="row">
             <div class="ratings text-center" >
                 <i class="fa fa-star rating-color" style="color: orange;" v-for="index in parseInt(trackedProductItem.rate)"></i>
-                <i class="fa fa-star" v-for="index in (5 - parseInt(trackedProductItem.rate))"></i>
+                <i class="fa fa-star" style="margin-left: -3px;" v-for="index in (5 - parseInt(trackedProductItem.rate))"></i>
             </div>
         </div>
 

@@ -20,10 +20,14 @@
             ></button>
           </div>
           <div class="modal-body ">
-            <div class="mb-3">
+            <div class="mb-4">
                 <img :src="newTrackingItem.image" width="50%" alt="" srcset="">
             </div>
             
+            <div style="color: #007600;">
+              <span v-if="newTrackingItem.stockState != null">{{ newTrackingItem.stockState }}</span>
+            </div>
+
             <div class="mb-2">
                 <i class="fa fa-star rating-color" style="color: orange;" v-for="index in parseInt(newTrackingItem.rate)"></i>
                 <i class="fa fa-star" style="margin-left: -4px;" v-for="index in (5 - parseInt(newTrackingItem.rate))"></i>
@@ -95,7 +99,8 @@ export default {
                 id : null,
                 image : null,
                 currentPrice : null,
-                name : null
+                name : null,
+                stockState : null
             },
             interval : 20,
             targetPrice : 1
@@ -143,6 +148,7 @@ export default {
             this.newTrackingItem.image = item.image;
             this.newTrackingItem.currentPrice = item.currentPrice;
             this.newTrackingItem.name = item.name;
+            this.newTrackingItem.stockState = item.stockState;
         })
     },
 };

@@ -149,14 +149,13 @@ export default {
       this.successNotification = item.successNotification;;
       this.warningNotification = item.warningNotification;
       this.errorNotification = item.errorNotification;
-      this.closeTheAllNotifications();
     },
 
     showTheNewtrackedAlert(item){
       this.successTrackedNotification = item.successTrackedNotification;;
       this.warningTrackedNotification = item.warningTrackedNotification;
       this.errorTrackedNotification = item.errorTrackedNotification;
-      this.closeTheAllNotifications();
+
     },
   
   },
