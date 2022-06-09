@@ -38,14 +38,16 @@
         <div class="card-sl">
           <div style="min-height: 500px;">
             <div class="card-image text-center">
+              <i v-if="product.isTracking == true" class="fa-solid fa-eye track-icon" title="This product is tracking by price tracker"></i>
               <img :src="product.image" alt="" />
             </div>
             <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
-            <div class="card-heading">
-              {{ product.name }}
+            <div class="card-heading" >
+            <div class="mt-2 mb-2" v-if="product.rate != null">
+              <i class="fa fa-star rating-color" style="color: orange;" v-for="index in parseInt(product.rate)"></i>
+              <i class="fa fa-star" style="margin-left: -4px;" v-for="index in (5 - parseInt(product.rate))"></i>
             </div>
-            <div class="card-text">
-              {{ product.description }}
+              {{ product.name }}
             </div>
             <div class="card-text">
               {{

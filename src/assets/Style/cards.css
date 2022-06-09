@@ -22,7 +22,7 @@
     }
     
     .card-image img {
-        max-height: 15em;
+        max-height: 200px;
         max-width: 100%;
         border-radius: 8px 8px 0px 0;
         margin-top: 20px;
@@ -43,6 +43,18 @@
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
     }
 
+    .track-icon {
+        position: relative;
+        float: right;
+        margin-top: 20px;
+        margin-right: 20px;     
+        z-index: 2;
+        background: transparent;
+        font-size: 15px;
+    }
+
+ 
+
     .card-action:hover {
         color: white;
         background: #E26D5C;
@@ -56,21 +68,21 @@
         text-overflow: ellipsis;
         font-weight: bold;
         background: white;
-        padding: 10px 15px;
-        margin-left: 10px;
-        margin-right: 10px;
-        text-align: center;
+        padding: 10px 10px;
+        margin-left: 55px;
+    
     }
 
     .card-text {
         padding: 10px 15px;
         background: white;
-        font-size: 1em;
+        font-size: 1.5em;
         height: 3.5em;
         overflow: hidden;
         text-overflow: ellipsis;
         line-height: 1.5em;
         color: #636262;
+        font-weight: 400;
         margin-left: 10px;
         margin-right: 10px;
     }
