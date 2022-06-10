@@ -147,6 +147,25 @@ a{
     background: #555; 
   }
 
+
+.notification {
+    position: relative;
+    z-index: 101;
+    float: right;  
+    width: 500px;
+    height: 70px;
+    top: 10px;
+    padding-top: 12px;
+    border-radius: 5px;
+    line-height: 2.5;
+    overflow: hidden; 
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow:    0 0 5px black;
+    box-shadow:         0 0 5px black;
+}
+
+
+
 @media screen and (min-width: 768px){
     body{
         margin: calc(var(--header-height) + 1rem) 0 0 0;
