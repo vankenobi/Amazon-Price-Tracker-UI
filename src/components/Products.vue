@@ -4,42 +4,42 @@
      <transition name="notify">
       <div v-show="successNotification" class="alert alert-success notification">
         <strong>Success!</strong> New product added.
-        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button @click="successNotification = false" style="float: right;" type="button" class="btn-close"></button>
       </div>
     </transition>
 
     <transition name="notify">
       <div v-show="warningNotification" class="alert alert-warning notification">
         <strong>Warning!</strong> Product already exists.
-        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button @click="warningNotification = false" style="float: right;" type="button" class="btn-close"></button>
       </div>
     </transition>
     
     <transition name="notify">
       <div v-show="errorNotification" class="alert alert-danger notification">
         <strong>Error!</strong> Error adding product.
-        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button @click="errorNotification = false"  style="float: right;" type="button" class="btn-close"></button>
       </div>
     </transition>
       
     <transition name="notify">
       <div v-show="successTrackedNotification" class="alert alert-success notification">
         <strong>Success!</strong> The product is being tracked successfully.
-        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button @click="successTrackedNotification = false" style="float: right;" type="button" class="btn-close"></button>
       </div>  
     </transition>
     
     <transition name="notify">
       <div v-show="warningTrackedNotification" class="alert alert-warning notification">
         <strong>Warning!</strong> The product is already being tracked.
-        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button @click="warningTrackedNotification = false" style="float: right;" type="button" class="btn-close"></button>
       </div>
     </transition>
     
     <transition name="notify">
       <div v-show="errorTrackedNotification" class="alert alert-danger notification">
         <strong>Error!</strong> The product cannot be tracked.
-        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <button @click="errorTrackedNotification = false" style="float: right;" type="button" class="btn-close"></button>
       </div>
     </transition>
 
@@ -203,7 +203,11 @@ export default {
 
 
   .notify-enter-active {
-      animation: slide-in 0.5s ease-out forwards;
+      animation: slide-in 0.3s ease-out forwards;
+  }
+
+  .notify-leave-active{
+    animation: slide-out 0.3s ease-out forwards;
   }
 
 
@@ -213,6 +217,15 @@ export default {
     }
     to {
       transform: translateX(0px);
+    }
+  }
+
+ @keyframes slide-out {
+    from {
+      transform: translateX(0px);
+    }
+    to {
+      transform: translateX(550px);
     }
   }
 
