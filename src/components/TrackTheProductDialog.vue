@@ -21,16 +21,26 @@
           </div>
           <div class="modal-body ">
             <div class="mb-4">
-                <img :src="newTrackingItem.image" width="50%" alt="" srcset="">
+              <img :src="newTrackingItem.image" width="50%" alt="" srcset="" />
             </div>
-            
+
             <div style="color: #007600;">
-              <span v-if="newTrackingItem.stockState != null">{{ newTrackingItem.stockState }}</span>
+              <span v-if="newTrackingItem.stockState != null">{{
+                newTrackingItem.stockState
+              }}</span>
             </div>
 
             <div class="mb-2">
-                <i class="fa fa-star rating-color" style="color: orange;" v-for="index in parseInt(newTrackingItem.rate)"></i>
-                <i class="fa fa-star" style="margin-left: -3px;" v-for="index in (5 - parseInt(newTrackingItem.rate))"></i>
+              <i
+                class="fa fa-star rating-color"
+                style="color: orange;"
+                v-for="index in parseInt(newTrackingItem.rate)"
+              ></i>
+              <i
+                class="fa fa-star"
+                style="margin-left: -3px;"
+                v-for="index in 5 - parseInt(newTrackingItem.rate)"
+              ></i>
             </div>
 
             <div class="mb-2" style="font-size: larger; font-weight: bold;">
@@ -42,36 +52,57 @@
               }}
             </div>
             <div class="row mb-2">
-                <h5>{{ newTrackingItem.name }}</h5>
-            </div>
-            
-            
-            <div class="container ">
-                <div class="row">
-                    <label class="col-md-3" style="font-weight: 500;">Interval : </label>
-                    <div class="col-md-6">
-                        <input class="col-md-6 form-range" v-model="interval" min="20" max="60" step="5" type="range" id="customRange1">
-                    </div>
-                        <label class="col-md-2" style="font-weight: 500;"> {{ interval }} min</label>
-                </div>
+              <h5>{{ newTrackingItem.name }}</h5>
             </div>
 
             <div class="container ">
-                <div class="row">
-                    <label class="col-md-3" style="font-weight: 500;">Target Price: </label>
-                    <div class="col-md-6">
-                        <input class="col-md-6 form-range" v-model="targetPrice" min="1" :max="newTrackingItem.currentPrice" step="1" type="range" id="customRange2">
-                    </div>
-                        <label class="col-md-2" style="font-weight: 500;"> {{
-                                                                                new Intl.NumberFormat("tr-TR", {
-                                                                                style: "currency",
-                                                                                currency: "TRY"
-                                                                                }).format(targetPrice)
-                                                                            }}</label>
+              <div class="row">
+                <label class="col-md-3" style="font-weight: 500;"
+                  >Interval :
+                </label>
+                <div class="col-md-6">
+                  <input
+                    class="col-md-6 form-range"
+                    v-model="interval"
+                    min="20"
+                    max="60"
+                    step="5"
+                    type="range"
+                    id="customRange1"
+                  />
                 </div>
+                <label class="col-md-2" style="font-weight: 500;">
+                  {{ interval }} min</label
+                >
+              </div>
             </div>
-            
-            
+
+            <div class="container ">
+              <div class="row">
+                <label class="col-md-3" style="font-weight: 500;"
+                  >Target Price:
+                </label>
+                <div class="col-md-6">
+                  <input
+                    class="col-md-6 form-range"
+                    v-model="targetPrice"
+                    min="1"
+                    :max="newTrackingItem.currentPrice"
+                    step="1"
+                    type="range"
+                    id="customRange2"
+                  />
+                </div>
+                <label class="col-md-2" style="font-weight: 500;">
+                  {{
+                    new Intl.NumberFormat("tr-TR", {
+                      style: "currency",
+                      currency: "TRY"
+                    }).format(targetPrice)
+                  }}</label
+                >
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button
@@ -81,7 +112,15 @@
             >
               Close
             </button>
-            <button @click="trackTheProduct" data-bs-dismiss="modal" type="button" class="btn btn-primary" style="background-color: #1c2431;">Track the product</button>
+            <button
+              @click="trackTheProduct"
+              data-bs-dismiss="modal"
+              type="button"
+              class="btn btn-primary"
+              style="background-color: #1c2431;"
+            >
+              Track the product
+            </button>
           </div>
         </div>
       </div>
@@ -89,68 +128,70 @@
   </div>
 </template>
 <script>
-import { eventBus } from '../main';
-import axios from 'axios';
+import { eventBus } from "../main";
+import axios from "axios";
 export default {
-    data() {
-        return {
-            newTrackingItem : {
-                rate : null,
-                id : null,
-                image : null,
-                currentPrice : null,
-                name : null,
-                stockState : null
-            },
-            interval : 20,
-            targetPrice : 1
-        }
-    },
-    methods: {
-        trackTheProduct(){
-        const config = { headers: { "Content-Type": "application/json" } };
-        axios
-            .post(
-            "https://localhost:7176/api/TrackedProducts/AddProductTracking",
-            {
-                "productId": this.newTrackingItem.id,
-                "interval": this.interval,
-                "targetPrice": this.targetPrice
-            },
-            config
-            )
-            .then(response => {
-            if (response.data.responseCode === 200) {
-              eventBus.$emit("notificationForNewTracking",{ errorTrackedNotification: false,
-                                            warningTrackedNotification: false,
-                                            successTrackedNotification: true });
-            }
-
-            else if (response.data.responseCode === 400) {
-               eventBus.$emit("notificationForNewTracking",{ errorTrackedNotification: false,
-                                            warningTrackedNotification: true,
-                                            successTrackedNotification: false });
-            }
-
-            else{
-                eventBus.$emit("notificationForNewTracking",{ errorTrackedNotification: true,
-                                                warningTrackedNotification: false,
-                                                successTrackedNotification: false });
-            }
-            })
-            .catch(e => console.log(e));
-            }
-    },
-    created() {
-        eventBus.$on("AddNewTrackedItem",(item) => {
-            this.newTrackingItem.rate = item.rate;
-            this.newTrackingItem.id = item.id;
-            this.newTrackingItem.image = item.image;
-            this.newTrackingItem.currentPrice = item.currentPrice;
-            this.newTrackingItem.name = item.name;
-            this.newTrackingItem.stockState = item.stockState;
+  data() {
+    return {
+      newTrackingItem: {
+        rate: null,
+        id: null,
+        image: null,
+        currentPrice: null,
+        name: null,
+        stockState: null
+      },
+      interval: 20,
+      targetPrice: 1
+    };
+  },
+  methods: {
+    trackTheProduct() {
+      const config = { headers: { "Content-Type": "application/json" } };
+      axios
+        .post(
+          "https://localhost:7176/api/TrackedProducts/AddProductTracking",
+          {
+            productId: this.newTrackingItem.id,
+            interval: this.interval,
+            targetPrice: this.targetPrice
+          },
+          config
+        )
+        .then(response => {
+          if (response.data.responseCode === 200) {
+            eventBus.$emit("notificationForNewTracking", {
+              errorTrackedNotification: false,
+              warningTrackedNotification: false,
+              successTrackedNotification: true
+            });
+          } else if (response.data.responseCode === 400) {
+            eventBus.$emit("notificationForNewTracking", {
+              errorTrackedNotification: false,
+              warningTrackedNotification: true,
+              successTrackedNotification: false
+            });
+          } else {
+            eventBus.$emit("notificationForNewTracking", {
+              errorTrackedNotification: true,
+              warningTrackedNotification: false,
+              successTrackedNotification: false
+            });
+          }
         })
-    },
+        .catch(e => console.log(e));
+    }
+  },
+  created() {
+    eventBus.$on("AddNewTrackedItem", item => {
+      this.newTrackingItem.rate = item.rate;
+      this.newTrackingItem.id = item.id;
+      this.newTrackingItem.image = item.image;
+      this.newTrackingItem.currentPrice = item.currentPrice;
+      this.newTrackingItem.name = item.name;
+      this.newTrackingItem.stockState = item.stockState;
+    });
+  }
 };
 </script>
 <style lang=""></style>

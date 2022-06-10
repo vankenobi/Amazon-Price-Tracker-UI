@@ -1,35 +1,52 @@
 <template>
-  <div
-    class="container-fluid"
-    style="margin-top:50px; margin-bottom: 150px; padding: 100px;">
-
-    <div v-show="successNotification" class="alert alert-success">
+  <div>
+    
+     <transition name="notify">
+      <div v-show="successNotification" class="alert alert-success notification">
         <strong>Success!</strong> New product added.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <div v-show="warningNotification" class="alert alert-warning">
+        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </transition>
+
+    <transition name="notify">
+      <div v-show="warningNotification" class="alert alert-warning notification">
         <strong>Warning!</strong> Product already exists.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <div v-show="errorNotification" class="alert alert-danger">
+        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </transition>
+    
+    <transition name="notify">
+      <div v-show="errorNotification" class="alert alert-danger notification">
         <strong>Error!</strong> Error adding product.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <div v-show="successTrackedNotification" class="alert alert-success">
+        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </transition>
+      
+    <transition name="notify">
+      <div v-show="successTrackedNotification" class="alert alert-success notification">
         <strong>Success!</strong> The product is being tracked successfully.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <div v-show="warningTrackedNotification" class="alert alert-warning">
+        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>  
+    </transition>
+    
+    <transition name="notify">
+      <div v-show="warningTrackedNotification" class="alert alert-warning notification">
         <strong>Warning!</strong> The product is already being tracked.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <div v-show="errorTrackedNotification" class="alert alert-danger">
+        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </transition>
+    
+    <transition name="notify">
+      <div v-show="errorTrackedNotification" class="alert alert-danger notification">
         <strong>Error!</strong> The product cannot be tracked.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    
-    <!-- alert -->
-    
+        <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    </transition>
+
+    <div
+    class="container-fluid"
+    style=" margin-bottom: 150px; padding: 100px;">
+
     <TrackTheProductDialogVue></TrackTheProductDialogVue>
     <AddNewProductDialog></AddNewProductDialog>
     
@@ -60,7 +77,7 @@
             </div>
           </div>
           
-            <button
+            <button 
             type="button"
             class=" card-button-track"
             data-bs-toggle="modal"
@@ -76,6 +93,11 @@
       </ProductCard>
     </div>
   </div>
+  </div>
+  
+  
+
+  
 </template>
 
 <script>
@@ -176,3 +198,23 @@ export default {
   }
 };
 </script>
+
+<style>
+
+
+  .notify-enter-active {
+      animation: slide-in 0.5s ease-out forwards;
+  }
+
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(200px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
+
+
+</style>
