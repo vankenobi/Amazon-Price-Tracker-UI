@@ -30,7 +30,7 @@
 
             <div class="mb-2">
                 <i class="fa fa-star rating-color" style="color: orange;" v-for="index in parseInt(newTrackingItem.rate)"></i>
-                <i class="fa fa-star" style="margin-left: -4px;" v-for="index in (5 - parseInt(newTrackingItem.rate))"></i>
+                <i class="fa fa-star" style="margin-left: -3px;" v-for="index in (5 - parseInt(newTrackingItem.rate))"></i>
             </div>
 
             <div class="mb-2" style="font-size: larger; font-weight: bold;">

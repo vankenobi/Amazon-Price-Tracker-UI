@@ -65,6 +65,7 @@
 <script>
 import axios from "axios";
 import { eventBus } from "../main";
+import ProductsVue from "./Products.vue";
 export default {
   data() {
     return {
@@ -77,7 +78,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
         .post(
-          "https://localhost:7176/api/Products/AddNewProductWithUrl",
+          "https://localhost:7176/api/Products/AddNewProductWithUrlAsync",
           this.url,
           config
         )

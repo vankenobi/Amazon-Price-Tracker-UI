@@ -34,7 +34,7 @@
     <AddNewProductDialog></AddNewProductDialog>
     
     <div class="row">
-      <ProductCard v-for="product in productList" :key="product.id">
+      <ProductCard v-model="productList" v-for="product in productList" :key="product.id">
         <div class="card-sl">
           <div style="min-height: 500px;">
             <div class="card-image text-center">
@@ -42,6 +42,7 @@
               <img :src="product.image" alt="" />
             </div>
             <a class="card-action" href="#"><i class="fa fa-heart"></i></a>
+            <a @click="DeleteTheProduct(product.id)" class="delete-action"><i class="fa-solid fa-trash-can"></i></a>
             <div class="card-heading" >
             <div class="mt-2 mb-2" v-if="product.rate != null">
               <i class="fa fa-star rating-color" style="color: orange;" v-for="index in parseInt(product.rate)"></i>
@@ -105,22 +106,7 @@ export default {
     };
   },
   methods: {
-    AddNewProduct() {
-      console.log(this.url);
-      const config = { headers: { "Content-Type": "application/json" } };
-      axios
-        .post(
-          "https://localhost:7176/api/Products/AddNewProductWithUrl",
-          this.url,
-          config
-        )
-        .then(response => {
-          console.log(response);
-        })
-        .catch(e => console.log(e));
-      this.GetAllProducts();
-    },
-
+    
     GetAllProducts() {
       this.productList.splice(0, this.productList.length);
       axios
@@ -132,6 +118,22 @@ export default {
           });
         })
         .catch(e => console.log(e));
+    },
+
+    DeleteTheProduct(id){
+      const config = { headers: { "Content-Type": "application/json" } };
+      axios
+        .post(
+          "https://localhost:7176/api/Products/DeleteProductAsync",
+          parseInt(id),
+          config
+        )
+        .then(response => {
+          console.log(response);
+          this.GetAllProducts();
+        })
+        .catch(e => console.log(e));
+        
     },
 
     HandleSelectItem(item){
@@ -170,7 +172,6 @@ export default {
     eventBus.$on("notificationForNewTracking",(item) => {
       this.showTheNewtrackedAlert(item);
     });
-
     this.GetAllProducts();
   }
 };
