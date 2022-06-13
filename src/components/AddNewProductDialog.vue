@@ -9,8 +9,9 @@
       data-bs-target="#exampleModal"
       style="font-weight: 400; "
     >
-      Add New Product <i class="bx bx-plus-circle"></i>
+      Add New Product <i style="vertical-align: middle;" class="bx bx-plus-circle"></i>
     </button>
+    
     <!-- Modal -->
 
     <div

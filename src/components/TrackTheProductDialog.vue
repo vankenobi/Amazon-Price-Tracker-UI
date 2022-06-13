@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <!-- Modal -->
     <div
       class="modal fade"
@@ -16,12 +17,12 @@
               type="button"
               class="btn-close"
               data-bs-dismiss="modal"
-              aria-label="Close"
+              aria-label="Close" xd
             ></button>
           </div>
           <div class="modal-body ">
-            <div class="mb-4">
-              <img :src="newTrackingItem.image" width="50%" alt="" srcset="" />
+            <div class="mb-4" style="max-height: 600px;">
+              <img :src="newTrackingItem.image" alt="" srcset="" />
             </div>
 
             <div style="color: #007600;">
