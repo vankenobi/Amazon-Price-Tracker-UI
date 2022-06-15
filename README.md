@@ -1,18 +1,40 @@
-# price-tracker-ui
 
-> A Vue.js project
+![Logo](https://drive.google.com/uc?export=view&id=1vpSXOnTEeH1hW_4rWLQiZHVeul01W6ee)
 
-## Build Setup
+# Amazon Price Tracker
 
-``` bash
-# install dependencies
-npm install
+Amazon price tracker is an open source project that followed the prices. Perfect to run on a docker container.
 
-# serve with hot reload at localhost:8080
-npm run dev
 
-# build for production with minification
-npm run build
+## Bilgisayarınızda Çalıştırın
+
+Projeyi klonlayın
+
+```bash
+  git clone https://link-to-project
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Proje dizinine gidin
+
+```bash
+  cd my-project
+```
+
+Gerekli paketleri yükleyin
+
+```bash
+  npm install
+```
+
+Sunucuyu çalıştırın
+
+```bash
+  npm run start
+```
+
+  
+## Geri Bildirim
+
+If you have a feedback, please send a mail to musa.kucuk99@hotmail.com
+
+  

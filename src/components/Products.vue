@@ -153,9 +153,7 @@
                 selectedProduct.stockState
               }}</span>
             </div>
-
             
-
             <div class="mb-2" style="font-size: larger; font-weight: bold;">
               {{
                 new Intl.NumberFormat("tr-TR", {
