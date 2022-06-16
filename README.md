@@ -5,7 +5,6 @@
 
 Amazon price tracker is an open source project that followed the prices. Perfect to run on a docker container.
 
-
 ## Bilgisayarınızda Çalıştırın
 
 Projeyi klonlayın
