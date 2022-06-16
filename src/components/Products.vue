@@ -229,8 +229,9 @@
               type="button"
               class="btn btn-primary"
               style="background-color: #1c2431;"
+              @click="update"
             >
-              Edit the 
+              Edit the Tracking Settings
             </button>
           </div>
         </div>
@@ -450,6 +451,15 @@ export default {
           });
         })
         .catch(e => console.log(e));
+    },
+    
+    setOptions(interval,targetPrice){
+      this.interval =  interval;
+      this.targetPrice = targetPrice;
+    },
+
+    UpdateTrackingSettings(){
+      
     },
 
     DeleteTheProduct(id) {
