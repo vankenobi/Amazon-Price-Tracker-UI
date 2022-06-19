@@ -102,6 +102,36 @@
       </div>
     </transition>
 
+    <transition name="notify">
+      <div
+        v-show="successUpdateIntervalAndTargetPriceNotification"
+        class="alert alert-success notification"
+      >
+        <strong>Success!</strong> The tracking settings of product successfully.
+        <button
+          @click="successUpdateIntervalAndTargetPriceNotification = false"
+          style="float: right;"
+          type="button"
+          class="btn-close"
+        ></button>
+      </div>
+    </transition>
+
+    <transition name="notify">
+      <div
+        v-show="errorUpdateIntervalAndTargetPriceNotification"
+        class="alert alert-danger notification"
+      >
+        <strong>Error!</strong> Error on update tracking settings of product.
+        <button
+          @click="errorUpdateIntervalAndTargetPriceNotification = false"
+          style="float: right;"
+          type="button"
+          class="btn-close"
+        ></button>
+      </div>
+    </transition>
+
     <div class="container-fluid" style=" margin-bottom: 150px; padding: 100px;">
       <TrackTheProductDialogVue></TrackTheProductDialogVue>
       <div class="row">
@@ -229,7 +259,7 @@
               type="button"
               class="btn btn-primary"
               style="background-color: #1c2431;"
-              @click="update"
+              @click="UpdateTrackedProductIntervalAndTargetPrice(parseInt(selectedProduct.id))"
             >
               Edit the Tracking Settings
             </button>
@@ -434,9 +464,16 @@ export default {
       warningTrackedNotification: false,
       errorTrackedNotification: false,
       successDeleteNotification: false,
+      successUpdateIntervalAndTargetPriceNotification: false,
+      errorUpdateIntervalAndTargetPriceNotification : false,
       areYouSure: false,
       interval: 20,
-      targetPrice: 1
+      targetPrice: 1,
+      productTrackingSettings: {
+        productId: null,
+        targetPrice: null,
+        interval: null
+      }
     };
   },
   methods: {
@@ -458,10 +495,25 @@ export default {
       this.targetPrice = targetPrice;
     },
 
-    UpdateTrackingSettings(){
+    UpdateTrackedProductIntervalAndTargetPrice(id){
+      const config = { headers: { "Content-Type": "application/json" } };
       
+      axios
+        .post(
+          "https://localhost:7176/api/TrackedProducts/UpdateTrackedProductIntervalAndTargetPrice",
+          this.productTrackingSettings,
+          config
+        )
+        .then(response => {
+          console.log(response);
+          if(response.status === 200){
+            this.successUpdateIntervalAndTargetPriceNotification = true;
+          }
+          this.GetAllProducts();
+        })
+        .catch(e => console.log(e));
     },
-
+ 
     DeleteTheProduct(id) {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
@@ -485,7 +537,14 @@ export default {
     },
 
     HandleSelectedProduct(item){
+      console.log(item);
       this.selectedProduct = item;
+      this.productTrackingSettings.productId = item.id;
+      this.productTrackingSettings.interval = parseInt(this.interval);
+      this.productTrackingSettings.targetPrice = parseInt(this.targetPrice);
+      this.targetPrice = this.selectedProduct.currentPrice - 1;
+      console.log(this.targetPrice);
+      console.log(this.productTrackingSettings);
       console.log(this.selectedProduct);
     },
 
