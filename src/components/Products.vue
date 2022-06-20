@@ -206,6 +206,7 @@
                   <input
                     class="col-md-6 form-range"
                     v-model="interval"
+                    @change="setOptions()"
                     min="20"
                     max="60"
                     step="5"
@@ -227,9 +228,10 @@
                 <div class="col-md-6">
                   <input
                     class="col-md-6 form-range"
+                    @change="setOptions()"
                     v-model="targetPrice"
                     min="1"
-                    :max="selectedProduct.currentPrice"
+                    :max="selectedProduct.currentPrice - 1"
                     step="1"
                     type="range"
                     id="customRange2"
@@ -491,14 +493,14 @@ export default {
         .catch(e => console.log(e));
     },
     
-    setOptions(interval,targetPrice){
-      this.interval =  interval;
-      this.targetPrice = targetPrice;
+    setOptions(){
+      this.productTrackingSettings.targetPrice = parseFloat(this.targetPrice);
+      this.productTrackingSettings.interval = parseInt(this.interval);
     },
 
     UpdateTrackedProductIntervalAndTargetPrice(id){
       const config = { headers: { "Content-Type": "application/json" } };
-      
+      console.log(this.productTrackingSettings);
       axios
         .post(
           "https://localhost:7176/api/TrackedProducts/UpdateTrackedProductIntervalAndTargetPrice",
@@ -511,8 +513,10 @@ export default {
             this.successUpdateIntervalAndTargetPriceNotification = true;
           }
           this.GetAllProducts();
+          this.targetPrice = 1;
         })
         .catch(e => console.log(e));
+
     },
  
     DeleteTheProduct(id) {
@@ -542,11 +546,7 @@ export default {
       this.selectedProduct = item;
       this.productTrackingSettings.productId = item.id;
       this.productTrackingSettings.interval = parseInt(this.interval);
-      this.productTrackingSettings.targetPrice = parseInt(this.targetPrice);
-      this.targetPrice = this.selectedProduct.currentPrice - 1;
-      console.log(this.targetPrice);
-      console.log(this.productTrackingSettings);
-      console.log(this.selectedProduct);
+      this.productTrackingSettings.targetPrice = parseFloat(this.selectedProduct.currentPrice) - 1;
     },
 
     changeFavoriteState(id){
