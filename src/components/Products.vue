@@ -139,9 +139,10 @@
           <AddNewProductDialog></AddNewProductDialog>
         </div>
       </div>
+      <!-- waiting notification development -->
       
       <!-- Edit the tracking settings ? (Modal) -->
-
+      
       <div
       class="modal fade"
       id="exampleModal4"
