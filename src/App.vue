@@ -1,7 +1,7 @@
 <template>
 <div>
-  <Header></Header>
   <SideBar></SideBar>
+  <HeaderVue></HeaderVue>
   <router-view id="app"></router-view> 
 </div>
   
@@ -9,12 +9,12 @@
 
 <script>
 import SideBar from './components/SideBar';
-import Header from './components/Header';
+import HeaderVue from './components/header.vue';
 export default {
   name: 'app',
   components : {
     SideBar,
-    Header,
+    HeaderVue
   }
 }
 </script>

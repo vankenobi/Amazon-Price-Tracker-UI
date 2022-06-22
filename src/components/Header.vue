@@ -1,10 +1,7 @@
-<template>
-<div>
-    <header class="header" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div> 
-    </header>
-</div>
-    
+<template >
+    <div class="container text-center">
+        <!-- <img style="width: 25%;" src="../assets/logo.png" alt=""> -->
+    </div>
 </template>
 <script>
 export default {

@@ -4,10 +4,10 @@
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn btn-success"
+      class="btn btn-success newProductButton"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
-      style="font-weight: 400; "
+      style="font-weight: 400;"
     >
       Add New Product <i style="vertical-align: middle;" class="bx bx-plus-circle"></i>
     </button>

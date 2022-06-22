@@ -100,8 +100,10 @@ a{
     margin-bottom: 1.5rem;
     transition: .3s
 }
-.nav_link:hover{
+
+.nav_link:hover >{
     color: var(--white-color)
+    
 }
 .nav_icon{
     font-size: 1.50rem
@@ -164,6 +166,16 @@ a{
     box-shadow:         0 0 5px black;
 }
 
+
+.newProductButton{
+    background-color: white;
+    color: rgb(86, 143, 86);
+}
+
+.newProductButton:hover(){
+    background-color: rgb(86, 143, 86);
+    color: white;
+}
 
 
 
