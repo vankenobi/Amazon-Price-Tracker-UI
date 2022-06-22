@@ -528,7 +528,6 @@ export default {
           config
         )
         .then(response => {
-          console.log(response);
           if(response.status === 200){
             this.successDeleteNotification = true;
           }
@@ -542,11 +541,27 @@ export default {
     },
 
     HandleSelectedProduct(item){
-      console.log(item);
+      this.getTrackedProductSingle(item);
       this.selectedProduct = item;
       this.productTrackingSettings.productId = item.id;
+      /*
       this.productTrackingSettings.interval = parseInt(this.interval);
       this.productTrackingSettings.targetPrice = parseFloat(this.selectedProduct.currentPrice) - 1;
+      */
+    },
+
+    getTrackedProductSingle(item){
+      const config = { headers: { "Content-Type": "application/json" } };
+      axios
+        .post("https://localhost:7176/api/TrackedProducts/GetTrackedProductByProductIdAsync",parseInt(item.id),config)
+        .then(response => {
+          if(response.status === 200){
+            
+            this.targetPrice = parseFloat(response.data.data.targetPrice);
+            this.interval = parseInt(response.data.data.interval);
+          }
+          
+        })
     },
 
     changeFavoriteState(id){
@@ -554,7 +569,6 @@ export default {
       axios
         .put("https://localhost:7176/api/Products/EditFavoriteStateAsync",parseInt(id),config)
         .then(response => {
-          console.log(response);
           if(response.status === 200){
             console.log("ürün favori olarak eklendi.");
           }
