@@ -177,6 +177,28 @@ a{
     color: white;
 }
 
+.dropdownItemSelected{
+    background-color: #f57a00;
+    border: 1px solid #242f41;
+    border-radius: 5px;
+}
+
+.dropdown-item:hover{
+    background-color: #f57a00;
+    border: 1px solid #242f41;
+    border-radius: 5px;
+}
+
+.orderByButton{
+    background-color: white;
+    border: 2px solid #242f41; 
+}
+
+.orderByButton:hover{
+    background-color: #242f41;
+    color: white;
+}
+
 
 
 @media screen and (min-width: 768px){

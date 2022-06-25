@@ -134,13 +134,13 @@
 
     <div class="container-fluid" style="margin-bottom: 150px; padding: 100px;">
       <TrackTheProductDialogVue></TrackTheProductDialogVue>
-      <div class="row" >
+      <div class="row mb-5" >
         <div class="col-md-6" style="text-align: left;">
           <AddNewProductDialog></AddNewProductDialog>
         </div>
         <div class="dropdown col-md-6" style="text-align: right;">
             <button
-              class="btn btn-secondary dropdown-toggle"
+              class="btn dropdown-toggle orderByButton"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
@@ -149,9 +149,9 @@
               Order By
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" @click="sortBy('lowToHigh')">Price : Low to high</a></li>
-              <li><a class="dropdown-item" @click="sortBy('highToLow')">Price : High to low</a></li>
-              <li><a class="dropdown-item" @click="sortBy('topRated')">Top rated</a></li>
+              <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'lowToHigh'}"  @click="sortBy('lowToHigh')"><b>Price</b>: Low to high</a></li>
+              <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'highToLow'}" @click="sortBy('highToLow')"><b>Price</b>: High to low</a></li>
+              <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'topRated'}" @click="sortBy('topRated')">Top rated</a></li>
             </ul>
           </div>
         
@@ -659,7 +659,7 @@ export default {
       }
       else if(value === "topRated"){
         this.productList = this.productList.sort((a, b) => b.rate - a.rate);
-        this.orderByState = "highToLow";
+        this.orderByState = "topRated";
       }
     },
 
