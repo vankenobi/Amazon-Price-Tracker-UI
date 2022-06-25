@@ -149,9 +149,9 @@
               Order By
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Price : Low to high</a></li>
-              <li><a class="dropdown-item" href="#">Price : High to low</a></li>
-              <li><a class="dropdown-item" href="#">Top rated</a></li>
+              <li><a class="dropdown-item" @click="sortBy('lowToHigh')">Price : Low to high</a></li>
+              <li><a class="dropdown-item" @click="sortBy('highToLow')">Price : High to low</a></li>
+              <li><a class="dropdown-item" @click="sortBy('topRated')">Top rated</a></li>
             </ul>
           </div>
         
@@ -521,7 +521,8 @@ export default {
         productId: null,
         targetPrice: null,
         interval: null
-      }
+      },
+      orderByState : null
     };
   },
   methods: {
@@ -537,10 +538,11 @@ export default {
         .then(response => {
           let data = response.data.data;
           data.forEach(element => {
-            this.productList.push(element);
+            this.productList.push(element);    
           });
         })
         .catch(e => console.log(e));
+        
     },
 
     setOptions() {
@@ -646,10 +648,19 @@ export default {
       this.errorUpdateIntervalAndTargetPriceNotification = false;
     },
 
-    sortBy(){
-
-      this.productList = this.productList.sort((a,b) => {}));
-
+    sortBy(value){
+      if(value === "lowToHigh"){
+        this.productList = this.productList.sort((a, b) => a.currentPrice - b.currentPrice);
+        this.orderByState = "lowToHigh";
+      }
+      else if(value === "highToLow"){
+        this.productList = this.productList.sort((a, b) => b.currentPrice - a.currentPrice);
+        this.orderByState = "highToLow";
+      }
+      else if(value === "topRated"){
+        this.productList = this.productList.sort((a, b) => b.rate - a.rate);
+        this.orderByState = "highToLow";
+      }
     },
 
     showTheNewProductAlert(item) {
@@ -666,6 +677,7 @@ export default {
   },
 
   created() {
+    this.sortBy();
     eventBus.$on("notification", item => {
       this.showTheNewProductAlert(item);
     });
