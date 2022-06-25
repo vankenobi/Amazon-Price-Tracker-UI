@@ -1,6 +1,7 @@
 <template>
   <div>
-    <transition name="notify">
+    <transition name="notify"
+    @after-enter="afterEnter">
       <div
         v-show="successNotification"
         class="alert alert-success notification"
@@ -15,7 +16,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition name="notify"
+    @after-enter="afterEnter">
       <div
         v-show="warningNotification"
         class="alert alert-warning notification"
@@ -30,7 +32,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition name="notify"
+    @after-enter="afterEnter">
       <div v-show="errorNotification" class="alert alert-danger notification">
         <strong>Error!</strong> Error adding product.
         <button
@@ -42,7 +45,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition name="notify"
+    @after-enter="afterEnter">
       <div
         v-show="successTrackedNotification"
         class="alert alert-success notification"
@@ -57,7 +61,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition name="notify"
+    @after-enter="afterEnter">
       <div
         v-show="warningTrackedNotification"
         class="alert alert-warning notification"
@@ -72,7 +77,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition  name="notify"
+    @after-enter="afterEnter">
       <div
         v-show="errorTrackedNotification"
         class="alert alert-danger notification"
@@ -87,7 +93,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition  name="notify"
+    @after-enter="afterEnter">
       <div
         v-show="successDeleteNotification"
         class="alert alert-success notification"
@@ -102,7 +109,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition name="notify"
+     @after-enter="afterEnter">
       <div
         v-show="successUpdateIntervalAndTargetPriceNotification"
         class="alert alert-success notification"
@@ -117,7 +125,8 @@
       </div>
     </transition>
 
-    <transition name="notify">
+    <transition name="notify"
+    @after-enter="afterEnter">
       <div
         v-show="errorUpdateIntervalAndTargetPriceNotification"
         class="alert alert-danger notification"
@@ -431,7 +440,7 @@
             >
               Track The Product
             </button>
-            <a :href="product.url" class="card-button-product"
+            <a :href="product.url" target="_blank" class="card-button-product"
               >Go to the product</a
             >
           </div>
@@ -480,6 +489,12 @@ export default {
     };
   },
   methods: {
+    afterEnter(){
+      console.log("after Enter çalıştı.");
+      setTimeout(this.closeTheAllNotifications,3000);
+    },
+
+
     GetAllProducts() {
       this.productList.splice(0, this.productList.length);
       axios
@@ -583,6 +598,9 @@ export default {
       this.successTrackedNotification = false;
       this.warningTrackedNotification = false;
       this.errorTrackedNotification = false;
+      this.successDeleteNotification =  false;
+      this.successUpdateIntervalAndTargetPriceNotification =  false;
+      this.errorUpdateIntervalAndTargetPriceNotification = false;
     },
 
     showTheNewProductAlert(item) {
