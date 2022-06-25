@@ -527,7 +527,6 @@ export default {
   },
   methods: {
     afterEnter() {
-      console.log("after Enter çalıştı.");
       setTimeout(this.closeTheAllNotifications, 3000);
     },
 
@@ -595,6 +594,8 @@ export default {
       this.getTrackedProductSingle(item);
       this.selectedProduct = item;
       this.productTrackingSettings.productId = item.id;
+      this.targetPrice = this.productTrackingSettings.targetPrice;
+      this.interval = this.productTrackingSettings.interval;
       this.productTrackingSettings.targetPrice = parseFloat(this.targetPrice);
       this.productTrackingSettings.interval = parseInt(this.interval);
 

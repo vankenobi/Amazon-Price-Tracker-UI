@@ -36,6 +36,7 @@
             <div class="col-md-12">
               <input
                 v-model="url"
+                onfocus="url"
                 type="url"
                 class="form-control col-md-4"
                 placeholder="Enter the Url"
@@ -99,7 +100,7 @@ export default {
           else{
             eventBus.$emit("notification",{ errorNotification: true,
                                             warningNotification: false,
-                                            successNotification: true });
+                                            successNotification: false });
           }
         })
         .catch(e => console.log(e));
