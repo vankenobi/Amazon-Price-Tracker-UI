@@ -1,7 +1,6 @@
 <template>
   <div>
-    <transition name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="successNotification"
         class="alert alert-success notification"
@@ -16,8 +15,7 @@
       </div>
     </transition>
 
-    <transition name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="warningNotification"
         class="alert alert-warning notification"
@@ -32,8 +30,7 @@
       </div>
     </transition>
 
-    <transition name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div v-show="errorNotification" class="alert alert-danger notification">
         <strong>Error!</strong> Error adding product.
         <button
@@ -45,8 +42,7 @@
       </div>
     </transition>
 
-    <transition name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="successTrackedNotification"
         class="alert alert-success notification"
@@ -61,8 +57,7 @@
       </div>
     </transition>
 
-    <transition name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="warningTrackedNotification"
         class="alert alert-warning notification"
@@ -77,8 +72,7 @@
       </div>
     </transition>
 
-    <transition  name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="errorTrackedNotification"
         class="alert alert-danger notification"
@@ -93,8 +87,7 @@
       </div>
     </transition>
 
-    <transition  name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="successDeleteNotification"
         class="alert alert-success notification"
@@ -109,8 +102,7 @@
       </div>
     </transition>
 
-    <transition name="notify"
-     @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="successUpdateIntervalAndTargetPriceNotification"
         class="alert alert-success notification"
@@ -125,8 +117,7 @@
       </div>
     </transition>
 
-    <transition name="notify"
-    @after-enter="afterEnter">
+    <transition name="notify" @after-enter="afterEnter">
       <div
         v-show="errorUpdateIntervalAndTargetPriceNotification"
         class="alert alert-danger notification"
@@ -141,144 +132,168 @@
       </div>
     </transition>
 
-    <div class="container-fluid" style=" margin-bottom: 150px; padding: 100px;">
+    <div class="container-fluid" style="margin-bottom: 150px; padding: 100px;">
       <TrackTheProductDialogVue></TrackTheProductDialogVue>
-      <div class="row">
-        <div style="text-align: left;">
+      <div class="row" >
+        <div class="col-md-6" style="text-align: left;">
           <AddNewProductDialog></AddNewProductDialog>
         </div>
+        <div class="dropdown col-md-6" style="text-align: right;">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Order By
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Price : Low to high</a></li>
+              <li><a class="dropdown-item" href="#">Price : High to low</a></li>
+              <li><a class="dropdown-item" href="#">Top rated</a></li>
+            </ul>
+          </div>
+        
+        
       </div>
+
       <!-- waiting notification development -->
-      
+
       <!-- Edit the tracking settings ? (Modal) -->
-      
+
       <div
-      class="modal fade"
-      id="exampleModal4"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Tracking</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close" 
-            ></button>
-          </div>
-          <div class="modal-body ">
-            <div class="mb-4" style="max-height: 600px;">
-              <img :src="selectedProduct.image" alt="" srcset="" />
+        class="modal fade"
+        id="exampleModal4"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Add New Tracking
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
+            <div class="modal-body ">
+              <div class="mb-4" style="max-height: 600px;">
+                <img :src="selectedProduct.image" alt="" srcset="" />
+              </div>
 
-            <div class="mt-2 mb-2" v-if="selectedProduct.rate != null">
-                  <i
-                    class="fa fa-star rating-color"
-                    style="color: orange;"
-                    v-for="index in parseInt(selectedProduct.rate)"
-                  ></i>
-                  <i
-                    class="fa fa-star"
-                    style="margin-left: -4px;"
-                    v-for="index in 5 - parseInt(selectedProduct.rate)"
-                  ></i>
-            </div>
+              <div class="mt-2 mb-2" v-if="selectedProduct.rate != null">
+                <i
+                  class="fa fa-star rating-color"
+                  style="color: orange;"
+                  v-for="index in parseInt(selectedProduct.rate)"
+                ></i>
+                <i
+                  class="fa fa-star"
+                  style="margin-left: -4px;"
+                  v-for="index in 5 - parseInt(selectedProduct.rate)"
+                ></i>
+              </div>
 
-            <div style="color: #007600;">
-              <span v-if="selectedProduct.stockState != null">{{
-                selectedProduct.stockState
-              }}</span>
-            </div>
-            
-            <div class="mb-2" style="font-size: larger; font-weight: bold;">
-              {{
-                new Intl.NumberFormat("tr-TR", {
-                  style: "currency",
-                  currency: "TRY"
-                }).format(selectedProduct.currentPrice)
-              }}
-            </div>
-            <div class="row mb-2">
-              <h5>{{ selectedProduct.name }}</h5>
-            </div>
+              <div style="color: #007600;">
+                <span v-if="selectedProduct.stockState != null">{{
+                  selectedProduct.stockState
+                }}</span>
+              </div>
 
-            <div class="container ">
-              <div class="row">
-                <label class="col-md-3" style="font-weight: 500;"
-                  >Interval :
-                </label>
-                <div class="col-md-6">
-                  <input
-                    class="col-md-6 form-range"
-                    v-model="interval"
-                    @change="setOptions()"
-                    min="20"
-                    max="60"
-                    step="5"
-                    type="range"
-                    id="customRange1"
-                  />
+              <div class="mb-2" style="font-size: larger; font-weight: bold;">
+                {{
+                  new Intl.NumberFormat("tr-TR", {
+                    style: "currency",
+                    currency: "TRY"
+                  }).format(selectedProduct.currentPrice)
+                }}
+              </div>
+              <div class="row mb-2">
+                <h5>{{ selectedProduct.name }}</h5>
+              </div>
+
+              <div class="container ">
+                <div class="row">
+                  <label class="col-md-3" style="font-weight: 500;"
+                    >Interval :
+                  </label>
+                  <div class="col-md-6">
+                    <input
+                      class="col-md-6 form-range"
+                      v-model="interval"
+                      @change="setOptions()"
+                      min="20"
+                      max="60"
+                      step="5"
+                      type="range"
+                      id="customRange1"
+                    />
+                  </div>
+                  <label class="col-md-2" style="font-weight: 500;">
+                    {{ interval }} min</label
+                  >
                 </div>
-                <label class="col-md-2" style="font-weight: 500;">
-                  {{ interval }} min</label
-                >
+              </div>
+
+              <div class="container ">
+                <div class="row">
+                  <label class="col-md-3" style="font-weight: 500;"
+                    >Target Price:
+                  </label>
+                  <div class="col-md-6">
+                    <input
+                      class="col-md-6 form-range"
+                      @change="setOptions()"
+                      v-model="targetPrice"
+                      min="1"
+                      :max="selectedProduct.currentPrice - 1"
+                      step="1"
+                      type="range"
+                      id="customRange2"
+                    />
+                  </div>
+                  <label class="col-md-2" style="font-weight: 500;">
+                    {{
+                      new Intl.NumberFormat("tr-TR", {
+                        style: "currency",
+                        currency: "TRY"
+                      }).format(targetPrice)
+                    }}</label
+                  >
+                </div>
               </div>
             </div>
-
-            <div class="container ">
-              <div class="row">
-                <label class="col-md-3" style="font-weight: 500;"
-                  >Target Price:
-                </label>
-                <div class="col-md-6">
-                  <input
-                    class="col-md-6 form-range"
-                    @change="setOptions()"
-                    v-model="targetPrice"
-                    min="1"
-                    :max="selectedProduct.currentPrice - 1"
-                    step="1"
-                    type="range"
-                    id="customRange2"
-                  />
-                </div>
-                <label class="col-md-2" style="font-weight: 500;">
-                  {{
-                    new Intl.NumberFormat("tr-TR", {
-                      style: "currency",
-                      currency: "TRY"
-                    }).format(targetPrice)
-                  }}</label
-                >
-              </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                data-bs-dismiss="modal"
+                type="button"
+                class="btn btn-primary"
+                style="background-color: #1c2431;"
+                @click="
+                  UpdateTrackedProductIntervalAndTargetPrice(
+                    parseInt(selectedProduct.id)
+                  )
+                "
+              >
+                Edit the Tracking Settings
+              </button>
             </div>
-           
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              data-bs-dismiss="modal"
-              type="button"
-              class="btn btn-primary"
-              style="background-color: #1c2431;"
-              @click="UpdateTrackedProductIntervalAndTargetPrice(parseInt(selectedProduct.id))"
-            >
-              Edit the Tracking Settings
-            </button>
           </div>
         </div>
       </div>
-    </div>
 
       <!-- Are you sure for delete ? (Modal) -->
       <div
@@ -291,8 +306,12 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 style="font-weight: 600;" class="modal-title py-2" id="exampleModalLabel">
-                Are you sure you for delete ? 
+              <h5
+                style="font-weight: 600;"
+                class="modal-title py-2"
+                id="exampleModalLabel"
+              >
+                Are you sure you for delete ?
               </h5>
               <button
                 type="button"
@@ -306,34 +325,40 @@
             <div class="modal-body ">
               <div class="row">
                 <div class="col-6 my-3">
-                  <img style="width: 60%;" :src="selectedProduct.image" alt="" />
+                  <img
+                    style="width: 60%;"
+                    :src="selectedProduct.image"
+                    alt=""
+                  />
                 </div>
                 <div class="col-6 my-3">
                   <div class="row">
-                    <h5> {{ selectedProduct.name }} </h5>
+                    <h5>{{ selectedProduct.name }}</h5>
                   </div>
                   <div class="row">
                     <div class="price-delete-modal">
                       {{
-                      new Intl.NumberFormat("tr-TR", {
-                        style: "currency",
-                        currency: "TRY"
-                      }).format(selectedProduct.currentPrice)
-                    }}
-                    </div>             
-                  </div>
-                  
+                        new Intl.NumberFormat("tr-TR", {
+                          style: "currency",
+                          currency: "TRY"
+                        }).format(selectedProduct.currentPrice)
+                      }}
+                    </div>
                   </div>
                 </div>
               </div>
-                <div class="row">
-                  <div class="col-11 mx-auto">
-                      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Warning!</strong> When you delete the product, it will also be deleted from the tracking list.
-                      </div>
-                  </div>
-                    
+            </div>
+            <div class="row">
+              <div class="col-11 mx-auto">
+                <div
+                  class="alert alert-warning alert-dismissible fade show"
+                  role="alert"
+                >
+                  <strong>Warning!</strong> When you delete the product, it will
+                  also be deleted from the tracking list.
+                </div>
               </div>
+            </div>
 
             <div class="modal-footer">
               <button
@@ -365,9 +390,11 @@
           <div class="card-sl">
             <div style="min-height: 500px;">
               <div class="card-image text-center">
-                <i v-if="product.isFavorite == true"
+                <i
+                  v-if="product.isFavorite == true"
                   title="This product is favorite"
-                  class="fa-solid fa-heart track-icon"></i>
+                  class="fa-solid fa-heart track-icon"
+                ></i>
                 <i
                   v-if="product.isTracking == true"
                   class="fa-solid fa-eye track-icon"
@@ -380,7 +407,16 @@
                 ></i>
                 <img :src="product.image" alt="" />
               </div>
-              <a @click="changeFavoriteState(product.id)" class="card-action" ><i v-if="product.isFavorite == false" class="fa fa-heart-circle-plus"></i><i v-if="product.isFavorite == true" class="fa-solid fa-heart-circle-xmark"></i></a>
+              <a @click="changeFavoriteState(product.id)" class="card-action"
+                ><i
+                  v-if="product.isFavorite == false"
+                  class="fa fa-heart-circle-plus"
+                ></i
+                ><i
+                  v-if="product.isFavorite == true"
+                  class="fa-solid fa-heart-circle-xmark"
+                ></i
+              ></a>
               <a
                 type="button"
                 data-bs-toggle="modal"
@@ -388,7 +424,7 @@
                 @click="HandleSelectedProduct(product)"
                 class="delete-action"
               >
-              <i class="fa-solid fa-trash-can"></i
+                <i class="fa-solid fa-trash-can"></i
               ></a>
               <div class="card-heading">
                 <div class="mt-2 mb-2" v-if="product.rate != null">
@@ -419,7 +455,7 @@
                 }}
               </div>
             </div>
-            
+
             <button
               v-if="product.isTracking == true"
               type="button"
@@ -467,7 +503,7 @@ export default {
     return {
       productList: [],
       url: "",
-      selectedProduct : {},
+      selectedProduct: {},
       dialogState: false,
       successNotification: false,
       warningNotification: false,
@@ -477,7 +513,7 @@ export default {
       errorTrackedNotification: false,
       successDeleteNotification: false,
       successUpdateIntervalAndTargetPriceNotification: false,
-      errorUpdateIntervalAndTargetPriceNotification : false,
+      errorUpdateIntervalAndTargetPriceNotification: false,
       areYouSure: false,
       interval: 20,
       targetPrice: 1,
@@ -489,11 +525,10 @@ export default {
     };
   },
   methods: {
-    afterEnter(){
+    afterEnter() {
       console.log("after Enter çalıştı.");
-      setTimeout(this.closeTheAllNotifications,3000);
+      setTimeout(this.closeTheAllNotifications, 3000);
     },
-
 
     GetAllProducts() {
       this.productList.splice(0, this.productList.length);
@@ -507,13 +542,13 @@ export default {
         })
         .catch(e => console.log(e));
     },
-    
-    setOptions(){
+
+    setOptions() {
       this.productTrackingSettings.targetPrice = parseFloat(this.targetPrice);
       this.productTrackingSettings.interval = parseInt(this.interval);
     },
 
-    UpdateTrackedProductIntervalAndTargetPrice(id){
+    UpdateTrackedProductIntervalAndTargetPrice(id) {
       const config = { headers: { "Content-Type": "application/json" } };
       console.log(this.productTrackingSettings);
       axios
@@ -524,16 +559,15 @@ export default {
         )
         .then(response => {
           console.log(response);
-          if(response.status === 200){
+          if (response.status === 200) {
             this.successUpdateIntervalAndTargetPriceNotification = true;
           }
           this.GetAllProducts();
           this.targetPrice = 1;
         })
         .catch(e => console.log(e));
-
     },
- 
+
     DeleteTheProduct(id) {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
@@ -543,7 +577,7 @@ export default {
           config
         )
         .then(response => {
-          if(response.status === 200){
+          if (response.status === 200) {
             this.successDeleteNotification = true;
           }
           this.GetAllProducts();
@@ -555,40 +589,49 @@ export default {
       eventBus.$emit("AddNewTrackedItem", item);
     },
 
-    HandleSelectedProduct(item){
+    HandleSelectedProduct(item) {
       this.getTrackedProductSingle(item);
       this.selectedProduct = item;
       this.productTrackingSettings.productId = item.id;
+      this.productTrackingSettings.targetPrice = parseFloat(this.targetPrice);
+      this.productTrackingSettings.interval = parseInt(this.interval);
+
       /*
       this.productTrackingSettings.interval = parseInt(this.interval);
       this.productTrackingSettings.targetPrice = parseFloat(this.selectedProduct.currentPrice) - 1;
       */
     },
 
-    getTrackedProductSingle(item){
+    getTrackedProductSingle(item) {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
-        .post("https://localhost:7176/api/TrackedProducts/GetTrackedProductByProductIdAsync",parseInt(item.id),config)
+        .post(
+          "https://localhost:7176/api/TrackedProducts/GetTrackedProductByProductIdAsync",
+          parseInt(item.id),
+          config
+        )
         .then(response => {
-          if(response.status === 200){
-            
+          if (response.status === 200) {
             this.targetPrice = parseFloat(response.data.data.targetPrice);
             this.interval = parseInt(response.data.data.interval);
           }
-          
-        })
+        });
     },
 
-    changeFavoriteState(id){
+    changeFavoriteState(id) {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
-        .put("https://localhost:7176/api/Products/EditFavoriteStateAsync",parseInt(id),config)
+        .put(
+          "https://localhost:7176/api/Products/EditFavoriteStateAsync",
+          parseInt(id),
+          config
+        )
         .then(response => {
-          if(response.status === 200){
+          if (response.status === 200) {
             console.log("ürün favori olarak eklendi.");
           }
           this.GetAllProducts();
-        })
+        });
     },
 
     closeTheAllNotifications() {
@@ -598,9 +641,15 @@ export default {
       this.successTrackedNotification = false;
       this.warningTrackedNotification = false;
       this.errorTrackedNotification = false;
-      this.successDeleteNotification =  false;
-      this.successUpdateIntervalAndTargetPriceNotification =  false;
+      this.successDeleteNotification = false;
+      this.successUpdateIntervalAndTargetPriceNotification = false;
       this.errorUpdateIntervalAndTargetPriceNotification = false;
+    },
+
+    sortBy(){
+
+      this.productList = this.productList.sort((a,b) => {}));
+
     },
 
     showTheNewProductAlert(item) {
