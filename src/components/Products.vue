@@ -132,31 +132,53 @@
       </div>
     </transition>
 
-    <div class="container-fluid" style="margin-bottom: 150px; padding: 100px;">
-      <TrackTheProductDialogVue></TrackTheProductDialogVue>
-      <div class="row mb-5" >
+    <div class="container-fluid px-5" style=" padding: 100px 100px 0px 0px;">
+      <TrackTheProductDialogVue></TrackTheProductDialogVue> 
+      <div class="row" >
         <div class="col-md-6" style="text-align: left;">
           <AddNewProductDialog></AddNewProductDialog>
         </div>
         <div class="dropdown col-md-6" style="text-align: right;">
+          <div style="display: inline-block;"> 
             <button
-              class="btn dropdown-toggle orderByButton"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Order By
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'lowToHigh'}"  @click="sortBy('lowToHigh')"><b>Price</b>: Low to high</a></li>
-              <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'highToLow'}" @click="sortBy('highToLow')"><b>Price</b>: High to low</a></li>
-              <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'topRated'}" @click="sortBy('topRated')">Top rated</a></li>
-            </ul>
+                class="btn dropdown-toggle orderByButton"
+                type="button"
+                id="dropdownMenuButtonFilter"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Filter by
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonFilter">
+                <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : filterByState === 'tracked'}"  @click="filterBy('tracked')">Tracked</a></li>
+                <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : filterByState === 'untracked'}" @click="filterBy('untracked')">Untracked</a></li>
+                <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : filterByState === 'favorite'}" @click="filterBy('favorite')">Favorite</a></li>
+              </ul>
           </div>
-        
-        
+            
+          <div style="display: inline-block;">
+              <button
+                class="btn dropdown-toggle orderByButton"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Order by
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'lowToHigh'}"  @click="sortBy('lowToHigh')"><b>Price</b>: Low to high</a></li>
+                <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'highToLow'}" @click="sortBy('highToLow')"><b>Price</b>: High to low</a></li>
+                <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : orderByState === 'topRated'}" @click="sortBy('topRated')">Top rated</a></li>
+              </ul> 
+          </div>
+         
+        </div>    
       </div>
+
+    </div>
+
+      
 
       <!-- waiting notification development -->
 
@@ -381,7 +403,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row p-5">
         <ProductCard
           v-model="productList"
           v-for="product in productList"
@@ -483,7 +505,7 @@
         </ProductCard>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -522,7 +544,8 @@ export default {
         targetPrice: null,
         interval: null
       },
-      orderByState : null
+      orderByState : null,
+      filterByState : null
     };
   },
   methods: {
@@ -538,6 +561,7 @@ export default {
           let data = response.data.data;
           data.forEach(element => {
             this.productList.push(element);    
+            console.log(this.productList);
           });
         })
         .catch(e => console.log(e));
@@ -661,6 +685,21 @@ export default {
       else if(value === "topRated"){
         this.productList = this.productList.sort((a, b) => b.rate - a.rate);
         this.orderByState = "topRated";
+      }
+    },
+
+    filterBy(value){
+      if(value === "tracked"){
+        this.productList = this.productList.filter(product => product.isTracking);
+        this.filterByState = "tracked";
+      }
+      else if (value === "untracked"){
+        this.productList = this.productList.filter(product => !product.isTracking);
+        this.filterByState = "untracked";
+      }
+      else if(value === "favorite"){
+        this.productList = this.productList.filter(product => product.isFavorite);
+        this.filterByState = "favorite";
       }
     },
 

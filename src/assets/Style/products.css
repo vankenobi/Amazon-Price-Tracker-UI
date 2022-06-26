@@ -152,7 +152,7 @@ a{
 
 .notification {
     position: relative;
-    z-index: 4;
+    z-index: 3;
     float: right;  
     width: 500px;
     height: 70px;
