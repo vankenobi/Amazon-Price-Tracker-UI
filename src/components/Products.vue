@@ -140,6 +140,7 @@
         </div>
         <div class="dropdown col-md-6" style="text-align: right;">
           <div style="display: inline-block;"> 
+          
             <button
                 class="btn dropdown-toggle orderByButton"
                 type="button"
@@ -147,8 +148,10 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
+              <button @click="disableFilter" class="disableButton" v-if="filterDisableButtonState"><i class='bx bxs-x-circle' ></i></button>
                 Filter by
               </button>
+            
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonFilter">
                 <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : filterByState === 'tracked'}"  @click="filterBy('tracked')">Tracked</a></li>
                 <li><a href="#" class="dropdown-item" :class="{ dropdownItemSelected : filterByState === 'untracked'}" @click="filterBy('untracked')">Untracked</a></li>
@@ -164,6 +167,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
+                <button @click="disableOrder" class="disableButton" v-if="orderDisableButtonState" ><i class='bx bxs-x-circle' ></i></button>
                 Order by
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -406,7 +410,7 @@
       <div class="row p-5">
         <ProductCard
           v-model="productList"
-          v-for="product in productList"
+          v-for="product in filteredAndSortedList"
           :key="product.id"
         >
           <div class="card-sl">
@@ -524,6 +528,7 @@ export default {
   data() {
     return {
       productList: [],
+      filteredAndSortedList : [],
       url: "",
       selectedProduct: {},
       dialogState: false,
@@ -545,7 +550,9 @@ export default {
         interval: null
       },
       orderByState : null,
-      filterByState : null
+      filterByState : null,
+      orderDisableButtonState : false,
+      filterDisableButtonState : false
     };
   },
   methods: {
@@ -560,7 +567,8 @@ export default {
         .then(response => {
           let data = response.data.data;
           data.forEach(element => {
-            this.productList.push(element);    
+            this.productList.push(element);
+            this.filteredAndSortedList.push(element);  
             console.log(this.productList);
           });
         })
@@ -675,32 +683,50 @@ export default {
 
     sortBy(value){
       if(value === "lowToHigh"){
-        this.productList = this.productList.sort((a, b) => a.currentPrice - b.currentPrice);
+        this.filteredAndSortedList = this.filteredAndSortedList.sort((a, b) => a.currentPrice - b.currentPrice);
         this.orderByState = "lowToHigh";
+        this.orderDisableButtonState = true;
       }
       else if(value === "highToLow"){
-        this.productList = this.productList.sort((a, b) => b.currentPrice - a.currentPrice);
+        this.filteredAndSortedList = this.filteredAndSortedList.sort((a, b) => b.currentPrice - a.currentPrice);
         this.orderByState = "highToLow";
+        this.orderDisableButtonState = true;
       }
       else if(value === "topRated"){
-        this.productList = this.productList.sort((a, b) => b.rate - a.rate);
+        this.filteredAndSortedList = this.filteredAndSortedList.sort((a, b) => b.rate - a.rate);
         this.orderByState = "topRated";
+        this.orderDisableButtonState = true;
       }
     },
 
     filterBy(value){
       if(value === "tracked"){
-        this.productList = this.productList.filter(product => product.isTracking);
+        this.filteredAndSortedList = this.filteredAndSortedList.filter(product => product.isTracking);
         this.filterByState = "tracked";
+        this.filterDisableButtonState = true;
       }
       else if (value === "untracked"){
-        this.productList = this.productList.filter(product => !product.isTracking);
+        this.filteredAndSortedList = this.filteredAndSortedList.filter(product => !product.isTracking);
         this.filterByState = "untracked";
+        this.filterDisableButtonState = true;
       }
       else if(value === "favorite"){
-        this.productList = this.productList.filter(product => product.isFavorite);
+        this.filteredAndSortedList = this.filteredAndSortedList.filter(product => product.isFavorite);
         this.filterByState = "favorite";
+        this.filterDisableButtonState = true;
       }
+    },
+
+    disableFilter(){
+      this.filterDisableButtonState = false;
+      this.filteredAndSortedList = this.productList;
+      this.filterByState = null;
+    },
+
+    disableOrder(){
+      this.orderDisableButtonState = false;
+      this.filteredAndSortedList = this.productList;
+      this.orderByState = null;
     },
 
     showTheNewProductAlert(item) {
