@@ -585,7 +585,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
       console.log(this.productTrackingSettings);
       axios
-        .post(
+        .post(  
           "https://localhost:7176/api/TrackedProducts/UpdateTrackedProductIntervalAndTargetPrice",
           this.productTrackingSettings,
           config
@@ -595,8 +595,6 @@ export default {
           if (response.status === 200) {
             this.successUpdateIntervalAndTargetPriceNotification = true;
           }
-          this.GetAllProducts();
-          this.targetPrice = 1;
         })
         .catch(e => console.log(e));
     },
