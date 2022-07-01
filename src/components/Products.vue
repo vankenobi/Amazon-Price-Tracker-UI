@@ -374,6 +374,7 @@
                 </div>
               </div>
             </div>
+
             <div class="row">
               <div class="col-11 mx-auto">
                 <div
@@ -416,6 +417,7 @@
           <div class="card-sl">
             <div style="min-height: 500px;">
               <div class="card-image text-center">
+                <ClipLoader class="loading" :loading="loading" :color="red" :size="size"></ClipLoader>
                 <i
                   v-if="product.isFavorite == true"
                   title="This product is favorite"
@@ -518,12 +520,15 @@ import axios from "axios";
 import AddNewProductDialog from "./AddNewProductDialog";
 import { eventBus } from "../main";
 import TrackTheProductDialogVue from "./TrackTheProductDialog.vue";
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
+
 
 export default {
   components: {
     ProductCard,
     AddNewProductDialog,
-    TrackTheProductDialogVue
+    TrackTheProductDialogVue,
+    ClipLoader
   },
   data() {
     return {
@@ -576,6 +581,13 @@ export default {
         
     },
 
+    disableFilterAndSort(){
+      this.orderByState = null,
+      this.filterByState = null,
+      this.orderDisableButtonState = false,
+      this.filterDisableButtonState = false
+    },
+
     setOptions() {
       this.productTrackingSettings.targetPrice = parseFloat(this.targetPrice);
       this.productTrackingSettings.interval = parseInt(this.interval);
@@ -610,8 +622,11 @@ export default {
         .then(response => {
           if (response.status === 200) {
             this.successDeleteNotification = true;
+            this.filteredAndSortedList = [];
+            this.GetAllProducts();
+            
           }
-          this.GetAllProducts();
+          
         })
         .catch(e => console.log(e));
     },
@@ -661,10 +676,12 @@ export default {
         )
         .then(response => {
           if (response.status === 200) {
+            this.filteredAndSortedList = [];
+            this.GetAllProducts();
             console.log("ürün favori olarak eklendi.");
           }
-          this.GetAllProducts();
         });
+
     },
 
     closeTheAllNotifications() {
@@ -743,9 +760,16 @@ export default {
   created() {
     this.sortBy();
     eventBus.$on("notification", item => {
+      this.filteredAndSortedList = []
+      this.disableFilterAndSort();
+      this.GetAllProducts();
       this.showTheNewProductAlert(item);
     });
-
+/*
+    eventBus.$on("notification", item => {
+      this.showTheNewProductAlert(item);
+    });
+*/
     eventBus.$on("notificationForNewTracking", item => {
       this.showTheNewtrackedAlert(item);
     });

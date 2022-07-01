@@ -67,6 +67,16 @@
         font-size: 15px;
     }
 
+    .loading{
+        position: relative;
+        float: left;   
+        z-index: 2;
+        background: transparent;
+        margin-top: 5px;
+        margin-left: 5px;
+        font-size: 15px;
+    }
+
     .delete-icon{
         position: relative;
         float: right;

@@ -30,6 +30,8 @@ import TrackedProductCard from './TrackedProductCard';
 import axios from 'axios';
 import { eventBus } from '../main';
 import PrimeVue from 'primevue/config';
+
+
 export default  {
     components : {
         TrackedProductCard

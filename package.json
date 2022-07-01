@@ -19,6 +19,7 @@
     "vue-apexcharts": "^1.6.2",
     "vue-router": "^3.5.4",
     "vue-slider-component": "^4.0.0-beta.4",
+    "vue-spinner": "^1.0.4",
     "vue-toast-notification": "2.0"
   },
   "browserslist": [
@@ -42,5 +43,3 @@
     "webpack-dev-server": "^2.9.1"
   }
 }
-
-

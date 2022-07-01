@@ -1,19 +1,20 @@
 <template>
   <div >
-
     <!-- Button trigger modal -->
     <button
-      type="button"
-      class="btn btn-success newProductButton"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-      style="font-weight: 400;"
+    type="button"
+    class="btn btn-success newProductButton col-md-2"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    style="font-weight: 400; display: inline;"
     >
-      Add New Product <i style="vertical-align: middle;" class="bx bx-plus-circle"></i>
+    Add New Product <i style="vertical-align: middle;" class="bx bx-plus-circle"></i>
     </button>
+    <pulse-loader v-if="loading" style="display: inline; float: right;"   :color="color" :size="size"></pulse-loader>
     
-    <!-- Modal -->
 
+    <!-- Modal -->
+    
     <div
       class="modal fade"
       id="exampleModal"
@@ -68,15 +69,23 @@
 import axios from "axios";
 import { eventBus } from "../main";
 import ProductsVue from "./Products.vue";
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+
 export default {
+  components : {
+    PulseLoader
+  },
+
   data() {
     return {
-      url: null
+      url: null,
+      loading : false
     };
   },
   methods: {
     AddNewProduct() {
       console.log(this.url);
+      this.loading = true;
       const config = { headers: { "Content-Type": "application/json" } };
       axios
         .post(
@@ -89,18 +98,21 @@ export default {
             eventBus.$emit("notification",{ errorNotification: false,
                                             warningNotification: false,
                                             successNotification: true });
+            this.loading = false;
           }
 
           else if (response.data.responseCode === 400) {
             eventBus.$emit("notification",{ errorNotification: false,
                                             warningNotification: true,
                                             successNotification: false });
+            this.loading = false;
           }
 
           else{
             eventBus.$emit("notification",{ errorNotification: true,
                                             warningNotification: false,
                                             successNotification: false });
+            this.loading = false;
           }
         })
         .catch(e => console.log(e));
@@ -109,4 +121,4 @@ export default {
 };
 </script>
 
-<style lang=""></style>
+
