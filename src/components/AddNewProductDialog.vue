@@ -42,6 +42,7 @@
                 class="form-control col-md-4"
                 placeholder="Enter the Url"
               />
+              <small v-if="invalid" class="form-text text-muted">The url of product is required.</small>
             </div>
           </div>
           <div class="modal-footer">
@@ -79,12 +80,11 @@ export default {
   data() {
     return {
       url: null,
-      loading : false
+      loading : false,
     };
   },
   methods: {
     AddNewProduct() {
-      console.log(this.url);
       this.loading = true;
       const config = { headers: { "Content-Type": "application/json" } };
       axios

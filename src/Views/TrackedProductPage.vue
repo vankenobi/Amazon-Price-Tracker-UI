@@ -32,17 +32,31 @@
             </div>
         </div>
 
-        <div class="row mt-3">
-                <ul class="list-group mx-auto ">
-                    <li v-for="item in trackedProductItem.technicalDetails" class="list-group-item p-3" style="background-color: #f8efed; border-color: #242f41;"> {{ item }} </li>
-                </ul>     
-        </div>
-
-        <div class="row mt-3">
-            <div id="chart">
-                <vueComponent type="area" height="500" :options="chartOptions" :series="series"></vueComponent>
+        <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+               <b style="color: gray;">About This Product</b> 
+            </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <ul  class="list-group list-group-flush">
+                    <li v-for="item in trackedProductItem.technicalDetails" class="list-group-item p-3" style="text-align: left;"> {{ item }} </li>
+                </ul>
+                
+            </div>
             </div>
         </div>
+        </div>
+
+        <div class="row mt-5 mb-3">
+            <div id="chart">
+                <vueComponent type="area" height="300" :options="chartOptions" :series="series"></vueComponent>
+            </div>
+        </div>
+
+        
         
         
         </div>

@@ -270,7 +270,7 @@
               <div class="container ">
                 <div class="row">
                   <label class="col-md-3" style="font-weight: 500;"
-                    >Target Price:
+                  >Target Price:
                   </label>
                   <div class="col-md-6">
                     <input
@@ -417,7 +417,6 @@
           <div class="card-sl">
             <div style="min-height: 500px;">
               <div class="card-image text-center">
-                <ClipLoader class="loading" :loading="loading" :color="red" :size="size"></ClipLoader>
                 <i
                   v-if="product.isFavorite == true"
                   title="This product is favorite"
@@ -606,6 +605,8 @@ export default {
           console.log(response);
           if (response.status === 200) {
             this.successUpdateIntervalAndTargetPriceNotification = true;
+            this.filteredAndSortedList = []
+            this.GetAllProducts();
           }
         })
         .catch(e => console.log(e));
