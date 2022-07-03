@@ -633,6 +633,7 @@ export default {
     },
 
     HandleSelectItem(item) {
+      console.log(item);
       eventBus.$emit("AddNewTrackedItem", item);
     },
 
