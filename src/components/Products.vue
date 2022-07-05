@@ -298,7 +298,7 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-danger"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -307,7 +307,7 @@
                 data-bs-dismiss="modal"
                 type="button"
                 class="btn btn-primary"
-                style="background-color: #1c2431;"
+                style="background-color: #1c2431; border: 0px;"
                 @click="
                   UpdateTrackedProductIntervalAndTargetPrice(
                     parseInt(selectedProduct.id)
@@ -633,6 +633,7 @@ export default {
     },
 
     HandleSelectItem(item) {
+      console.log("ürün seçildi.");
       console.log(item);
       eventBus.$emit("AddNewTrackedItem", item);
     },
