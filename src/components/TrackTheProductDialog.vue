@@ -31,7 +31,7 @@
               }}</span>
             </div>
 
-            <div class="mb-2">
+            <div v-if="newTrackingItem.rate != null" class="mb-2">
               <i
                 class="fa fa-star rating-color"
                 style="color: orange;"
@@ -108,17 +108,27 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-danger text-align-left"
               data-bs-dismiss="modal"
+              style="float: left;"
             >
               Close
+            </button>
+            <button
+              @click=""
+              data-bs-dismiss="modal"
+              type="button"
+              class="btn btn-primary"
+              style="background-color: #EE5007;  border: 0px;"
+            >
+              Leave Tracking
             </button>
             <button
               @click="trackTheProduct"
               data-bs-dismiss="modal"
               type="button"
-              class="btn btn-primary"
-              style="background-color: #1c2431;"
+              class="btn btn-primary "
+              style="background-color: #242f41; border: 0px;"
             >
               Track the product
             </button>
@@ -147,6 +157,39 @@ export default {
     };
   },
   methods: {
+    leaveTracking(){
+      const config = { headers: { "Content-Type": "application/json" } };
+       axios
+        .post(
+          "https://localhost:7176/api/TrackedProducts/DeleteTrackingOfProduct",
+          {
+            this.newTrackingItem.id,
+          },
+          config
+        )
+        .then(response => {
+          if (response.data.responseCode === 200) {
+            eventBus.$emit("notificationForNewTracking", {
+              errorTrackedNotification: false,
+              warningTrackedNotification: false,
+              successTrackedNotification: true
+            });
+          } else if (response.data.responseCode === 400) {
+            eventBus.$emit("notificationForNewTracking", {
+              errorTrackedNotification: false,
+              warningTrackedNotification: true,
+              successTrackedNotification: false
+            });
+          } else {
+            eventBus.$emit("notificationForNewTracking", {
+              errorTrackedNotification: true,
+              warningTrackedNotification: false,
+              successTrackedNotification: false
+            });
+          }
+        })
+        .catch(e => console.log(e));
+    },
     trackTheProduct() {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
@@ -185,6 +228,7 @@ export default {
   },
   created() {
     eventBus.$on("AddNewTrackedItem", item => {
+      console.log(item);
       this.newTrackingItem.rate = item.rate;
       this.newTrackingItem.id = item.id;
       this.newTrackingItem.image = item.image;
