@@ -162,9 +162,7 @@ export default {
        axios
         .post(
           "https://localhost:7176/api/TrackedProducts/DeleteTrackingOfProduct",
-          {
-            this.newTrackingItem.id,
-          },
+          this.newTrackingItem.id,
           config
         )
         .then(response => {

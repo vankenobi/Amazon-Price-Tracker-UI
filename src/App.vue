@@ -9,12 +9,10 @@
 
 <script>
 import SideBar from './components/SideBar';
-import HeaderVue from './components/header.vue';
 export default {
   name: 'app',
   components : {
     SideBar,
-    HeaderVue
   }
 }
 </script>

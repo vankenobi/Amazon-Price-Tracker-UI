@@ -32,6 +32,12 @@
             </div>
         </div>
 
+        <div class="row mt-5 mb-3">
+            <div id="chart">
+                <vueComponent type="area" height="300" :options="chartOptions" :series="series"></vueComponent>
+            </div>
+        </div>
+
         <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -50,11 +56,7 @@
         </div>
         </div>
 
-        <div class="row mt-5 mb-3">
-            <div id="chart">
-                <vueComponent type="area" height="300" :options="chartOptions" :series="series"></vueComponent>
-            </div>
-        </div>
+        
 
         
         
