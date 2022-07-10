@@ -89,7 +89,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
         .post(
-          "https://localhost:7176/api/Products/AddNewProductWithUrlAsync",
+          "http://44.204.241.92:8080/api/Products/AddNewProductWithUrlAsync",
           this.url,
           config
         )

@@ -44,7 +44,7 @@ export default  {
     methods: {
         GetAllTrackedProducts(){    
             this.trackedProductList.splice(0, this.trackedProductList.length);
-            axios.get('https://localhost:7176/api/TrackedProducts/GetAllTrackedProduct')
+            axios.get('http://44.204.241.92:8080/api/TrackedProducts/GetAllTrackedProduct')
             .then(response => {
                 let data = response.data.data;
                 data.forEach(element => {

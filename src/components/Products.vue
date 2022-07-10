@@ -567,7 +567,7 @@ export default {
     GetAllProducts() {
       this.productList.splice(0, this.productList.length);
       axios
-        .get("https://localhost:7176/api/Products/GetAllProducts")
+        .get("http://44.204.241.92:8080/api/Products/GetAllProducts")
         .then(response => {
           let data = response.data.data;
           data.forEach(element => {
@@ -597,7 +597,7 @@ export default {
       console.log(this.productTrackingSettings);
       axios
         .post(  
-          "https://localhost:7176/api/TrackedProducts/UpdateTrackedProductIntervalAndTargetPrice",
+          "http://44.204.241.92:8080/api/TrackedProducts/UpdateTrackedProductIntervalAndTargetPrice",
           this.productTrackingSettings,
           config
         )
@@ -616,7 +616,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
         .post(
-          "https://localhost:7176/api/Products/DeleteProductAsync",
+          "http://44.204.241.92:8080/api/Products/DeleteProductAsync",
           parseInt(id),
           config
         )
@@ -657,7 +657,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
         .post(
-          "https://localhost:7176/api/TrackedProducts/GetTrackedProductByProductIdAsync",
+          "http://44.204.241.92:8080/api/TrackedProducts/GetTrackedProductByProductIdAsync",
           parseInt(item.id),
           config
         )
@@ -673,7 +673,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
         .put(
-          "https://localhost:7176/api/Products/EditFavoriteStateAsync",
+          "http://44.204.241.92:8080/api/Products/EditFavoriteStateAsync",
           parseInt(id),
           config
         )

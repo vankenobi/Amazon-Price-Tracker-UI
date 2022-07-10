@@ -161,7 +161,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
        axios
         .post(
-          "https://localhost:7176/api/TrackedProducts/DeleteTrackingOfProduct",
+          "http://44.204.241.92:8080/api/TrackedProducts/DeleteTrackingOfProduct",
           this.newTrackingItem.id,
           config
         )
@@ -192,7 +192,7 @@ export default {
       const config = { headers: { "Content-Type": "application/json" } };
       axios
         .post(
-          "https://localhost:7176/api/TrackedProducts/AddProductTracking",
+          "http://44.204.241.92:8080/api/TrackedProducts/AddProductTracking",
           {
             productId: this.newTrackingItem.id,
             interval: this.interval,
