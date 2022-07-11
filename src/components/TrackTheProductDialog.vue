@@ -159,6 +159,7 @@ export default {
   methods: {
     leaveTracking(){
       const config = { headers: { "Content-Type": "application/json" } };
+      axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
        axios
         .post(
           "http://44.204.241.92:8080/api/TrackedProducts/DeleteTrackingOfProduct",
@@ -190,6 +191,7 @@ export default {
     },
     trackTheProduct() {
       const config = { headers: { "Content-Type": "application/json" } };
+      axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       axios
         .post(
           "http://44.204.241.92:8080/api/TrackedProducts/AddProductTracking",

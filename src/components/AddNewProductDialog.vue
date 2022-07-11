@@ -1,6 +1,8 @@
 <template>
   <div >
+
     <!-- Button trigger modal -->
+
     <button
     type="button"
     class="btn btn-success newProductButton col-md-2"
@@ -10,9 +12,8 @@
     >
     Add New Product <i style="vertical-align: middle;" class="bx bx-plus-circle"></i>
     </button>
-    <pulse-loader v-if="loading" style="display: inline; float: right;"   :color="color" :size="size"></pulse-loader>
+    <pulse-loader v-if="loading" style="display: inline; float: right;" ></pulse-loader>
     
-
     <!-- Modal -->
     
     <div
@@ -42,7 +43,6 @@
                 class="form-control col-md-4"
                 placeholder="Enter the Url"
               />
-              <small v-if="invalid" class="form-text text-muted">The url of product is required.</small>
             </div>
           </div>
           <div class="modal-footer">
@@ -87,6 +87,7 @@ export default {
     AddNewProduct() {
       this.loading = true;
       const config = { headers: { "Content-Type": "application/json" } };
+      axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
       axios
         .post(
           "http://44.204.241.92:8080/api/Products/AddNewProductWithUrlAsync",

@@ -63,6 +63,7 @@ export default {
             console.log(this.EmailSettings);
             
             const config = { headers: {'Content-Type': 'application/json'} };
+            axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
             axios.post('http://44.204.241.92:8080/api/Mails/SetMailServerSettings',this.EmailSettings,config)
             .then(response => {
                 console.log(response);
