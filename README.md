@@ -26,15 +26,13 @@ Amazon price tracker is an open source project that followed the prices. Perfect
 
 *This is a products page for amazon price tracker app*
 
-![Products Page Gif](https://drive.google.com/uc?export=view&id=1MgN-j9TPwHCaBxzhGN6E3LNvSnNso-mh)
-
+![Products Page Gif](https://drive.google.com/uc?export=view&id=1xITlqdpIfmKMn3ZNkyFcPFjLPfLtgGc7)
 
 ### Add New Product
 
 *This is an example to add the desired product.* 
 
-![Add New Product Gif](https://drive.google.com/uc?export=view&id=17y_KIz--oRTWlaXGxchZMSJBImUVjQ4w)
-  
+![Add New Product Gif](https://drive.google.com/uc?export=view&id=1cIy7cVwK0CC1KAsMHDmGVnU90kiMRrPq)
 ## Run From Your Computer
 
 Clone the project
