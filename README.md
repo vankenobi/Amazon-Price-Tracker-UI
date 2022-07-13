@@ -24,6 +24,12 @@ Amazon price tracker is an open source project that followed the prices. Perfect
 
 If you want to look you can access from [this link](http://44.204.241.92/)  the **live demo**
 
+### Mail Notification 
+
+*This is email template for price discount*
+
+![Mail](https://drive.google.com/uc?export=view&id=1Cs3eQh-C47cz3_IAR4m9L2jibuB8KUTz)
+
 ### Products Page
 
 *This is a products page for amazon price tracker app*
@@ -48,12 +54,6 @@ If you want to look you can access from [this link](http://44.204.241.92/)  the 
 *This is add new tracking popup*
 
 ![Add New Tracking Gif](https://drive.google.com/uc?export=view&id=17EGf7JegCjrYIe7jelCUGTakzs5fK8Rs)
-
-### Mail Notification 
-
-*This is email template for price discount*
-
-![Mail](https://drive.google.com/uc?export=view&id=1Cs3eQh-C47cz3_IAR4m9L2jibuB8KUTz)
 
 
 ## Run From Your Computer
