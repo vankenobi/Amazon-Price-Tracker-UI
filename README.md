@@ -22,6 +22,8 @@ Amazon price tracker is an open source project that followed the prices. Perfect
 **Used library:** Axios client is used for HTTP requests.
 ## Overview
 
+If you want to look you can access from [this link](http://44.204.241.92/)  the **live demo**
+
 ### Products Page
 
 *This is a products page for amazon price tracker app*
@@ -33,6 +35,21 @@ Amazon price tracker is an open source project that followed the prices. Perfect
 *This is an example to add the desired product.* 
 
 ![Add New Product Gif](https://drive.google.com/uc?export=view&id=1cIy7cVwK0CC1KAsMHDmGVnU90kiMRrPq)
+
+### Price History And Features Page | Track The Product Popup
+
+*This is price history and features page*
+
+![Add New Product Gif](https://drive.google.com/uc?export=view&id=1hE8g-FpGP3j_0v03dsan6rRhQY-AAJbD)
+
+
+### Add New Tracking Popup 
+
+*This is add new tracking popup*
+
+![Add New Tracking Gif](https://drive.google.com/uc?export=view&id=17EGf7JegCjrYIe7jelCUGTakzs5fK8Rs)
+
+
 ## Run From Your Computer
 
 Clone the project
