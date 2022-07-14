@@ -27,7 +27,7 @@ If you want to look you can access from [this link](http://44.204.241.92/)  the 
 
 ### Mail Notification 
 
-*This is email template for price discount*
+*This is email template for price discount or price rise*
 <img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-07-14%20000855.png" alt="mail" />
 
 ### Products Page                                                                                                                                                                                                                                                                                            
