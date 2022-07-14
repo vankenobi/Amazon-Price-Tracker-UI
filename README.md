@@ -1,3 +1,6 @@
+> **Warning**
+> The project is still development so be some errors 
+
 <img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/ded.png" alt="logo" />
     
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
