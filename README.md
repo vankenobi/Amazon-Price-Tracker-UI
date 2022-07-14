@@ -25,7 +25,7 @@ If you want to look you can access from [this link](http://44.204.241.92/)  the 
 ### Mail Notification 
 
 *This is email template for price discount*
-<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-07-14%20000855.png" alt="mail />
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-07-14%20000855.png" alt="mail" />
 
 ### Products Page                                                                                                                                                                                                                                                                                            
 *This is a products page for amazon price tracker app*
@@ -37,21 +37,20 @@ If you want to look you can access from [this link](http://44.204.241.92/)  the 
 
 *This is an example to add the desired product.* 
 
-![Add New Product Gif](https://drive.google.com/uc?export=view&id=1cIy7cVwK0CC1KAsMHDmGVnU90kiMRrPq)
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/Add%20new%20product.gif" alt="add new product" />
 
-### Price History And Features Page | Track The Product Popup
+### Price History And Features Page 
 
 *This is price history and features page*
 
-![Add New Product Gif](https://drive.google.com/uc?export=view&id=1hE8g-FpGP3j_0v03dsan6rRhQY-AAJbD)
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/pricehistory.png" alt="Price History And Features Page " />
 
 
 ### Add New Tracking Popup 
 
 *This is add new tracking popup*
 
-![Add New Tracking Gif](https://drive.google.com/uc?export=view&id=17EGf7JegCjrYIe7jelCUGTakzs5fK8Rs)
-
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/track%20the%20product.png" alt="add tracking" />
 
 ## Run From Your Computer
 
