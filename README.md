@@ -1,6 +1,7 @@
 
 ![Logo](https://drive.google.com/uc?export=view&id=1vpSXOnTEeH1hW_4rWLQiZHVeul01W6ee)
 <img src="https://drive.google.com/uc?export=view&id=1vpSXOnTEeH1hW_4rWLQiZHVeul01W6ee" alt="MarineGEO circle logo" style="height: 100px; width:100px;"/>
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/ded.png" alt="MarineGEO circle logo" />
     
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
