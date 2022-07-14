@@ -1,7 +1,4 @@
-
-![Logo](https://drive.google.com/uc?export=view&id=1vpSXOnTEeH1hW_4rWLQiZHVeul01W6ee)
-<img src="https://drive.google.com/uc?export=view&id=1vpSXOnTEeH1hW_4rWLQiZHVeul01W6ee" alt="MarineGEO circle logo" style="height: 100px; width:100px;"/>
-<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/ded.png" alt="MarineGEO circle logo" />
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/ded.png" alt="logo" />
     
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
@@ -28,14 +25,13 @@ If you want to look you can access from [this link](http://44.204.241.92/)  the 
 ### Mail Notification 
 
 *This is email template for price discount*
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-07-14%20000855.png" alt="mail />
 
-![Mail](https://drive.google.com/uc?export=view&id=1Cs3eQh-C47cz3_IAR4m9L2jibuB8KUTz)
-
-### Products Page
-
+### Products Page                                                                                                                                                                                                                                                                                            
 *This is a products page for amazon price tracker app*
 
-![Products Page Gif](https://drive.google.com/uc?export=view&id=1xITlqdpIfmKMn3ZNkyFcPFjLPfLtgGc7)
+<img src="https://github.com/vankenobi/Amazon-Price-Tracker-UI/blob/main/src/products%20page.gif" alt="products page" />
+
 
 ### Add New Product
 
