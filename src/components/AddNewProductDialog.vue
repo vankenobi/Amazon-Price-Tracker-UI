@@ -86,13 +86,14 @@ export default {
   methods: {
     AddNewProduct() {
       this.loading = true;
-      const config = { headers: { "Content-Type": "application/json" } };
+      const config = { headers: { "Content-Type": "application/json" , "Access-Control-Allow-Origin" : "http://44.204.241.92" } };
 
       axios
         .post(
           "http://44.204.241.92:8080/api/Products/AddNewProductWithUrlAsync",
           this.url,
-          config
+          config,
+          { withCredentials: false }
         )
         .then(response => {
           if (response.data.responseCode === 200) {
