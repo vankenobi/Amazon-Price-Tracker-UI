@@ -566,8 +566,9 @@ export default {
 
     GetAllProducts() {
       this.productList.splice(0, this.productList.length);
+      const config = { headers: { "Content-Type": "application/json" , "Access-Control-Allow-Origin" : "http://44.204.241.92"} };
       axios
-        .get("http://44.204.241.92:8080/api/Products/GetAllProducts")
+        .get("http://44.204.241.92:8080/api/Products/GetAllProducts",config,{ withCredentials: false })
         .then(response => {
           let data = response.data.data;
           data.forEach(element => {
@@ -593,13 +594,14 @@ export default {
     },
 
     UpdateTrackedProductIntervalAndTargetPrice(id) {
-      const config = { headers: { "Content-Type": "application/json" } };
+      const config = { headers: { "Content-Type": "application/json" ,"Access-Control-Allow-Origin" : "http://44.204.241.92" } };
       console.log(this.productTrackingSettings);
       axios
         .post(  
           "http://44.204.241.92:8080/api/TrackedProducts/UpdateTrackedProductIntervalAndTargetPrice",
           this.productTrackingSettings,
-          config
+          config,
+          
         )
         .then(response => {
           console.log(response);
@@ -613,12 +615,13 @@ export default {
     },
 
     DeleteTheProduct(id) {
-      const config = { headers: { "Content-Type": "application/json" } };
+      const config = { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin" : "http://44.204.241.92" } };
       axios
         .post(
           "http://44.204.241.92:8080/api/Products/DeleteProductAsync",
           parseInt(id),
-          config
+          config,
+          { withCredentials: false }
         )
         .then(response => {
           if (response.status === 200) {
@@ -654,12 +657,13 @@ export default {
     },
 
     getTrackedProductSingle(item) {
-      const config = { headers: { "Content-Type": "application/json" } };
+      const config = { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin" : "http://44.204.241.92"} };
       axios
         .post(
           "http://44.204.241.92:8080/api/TrackedProducts/GetTrackedProductByProductIdAsync",
           parseInt(item.id),
-          config
+          config,
+          { withCredentials: false }
         )
         .then(response => {
           if (response.status === 200) {
@@ -670,12 +674,13 @@ export default {
     },
 
     changeFavoriteState(id) {
-      const config = { headers: { "Content-Type": "application/json" } };
+      const config = { headers: { "Content-Type": "application/json" , "Access-Control-Allow-Origin" : "http://44.204.241.92" } };
       axios
         .put(
           "http://44.204.241.92:8080/api/Products/EditFavoriteStateAsync",
           parseInt(id),
-          config
+          config,
+          { withCredentials: false }
         )
         .then(response => {
           if (response.status === 200) {

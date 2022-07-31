@@ -158,12 +158,13 @@ export default {
   },
   methods: {
     leaveTracking(){
-      const config = { headers: { "Content-Type": "application/json" } };
+      const config = { headers: { "Content-Type": "application/json" , "Access-Control-Allow-Origin" : "http://44.204.241.92" } };
        axios
         .post(
           "http://44.204.241.92:8080/api/TrackedProducts/DeleteTrackingOfProduct",
           this.newTrackingItem.id,
-          config
+          config,
+          { withCredentials: false }
         )
         .then(response => {
           if (response.data.responseCode === 200) {
@@ -189,7 +190,7 @@ export default {
         .catch(e => console.log(e));
     },
     trackTheProduct() {
-      const config = { headers: { "Content-Type": "application/json" } };
+      const config = { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin" : "http://44.204.241.92" } };
 
       axios
         .post(
@@ -199,7 +200,8 @@ export default {
             interval: this.interval,
             targetPrice: this.targetPrice
           },
-          config
+          config,
+          { withCredentials: false }
         )
         .then(response => {
           if (response.data.responseCode === 200) {

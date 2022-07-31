@@ -44,7 +44,8 @@ export default  {
     methods: {
         GetAllTrackedProducts(){    
             this.trackedProductList.splice(0, this.trackedProductList.length);
-            axios.get('http://44.204.241.92:8080/api/TrackedProducts/GetAllTrackedProduct')
+            const config = { headers: { "Content-Type": "application/json" , "Access-Control-Allow-Origin" : "http://44.204.241.92" } };
+            axios.get('http://44.204.241.92:8080/api/TrackedProducts/GetAllTrackedProduct',config, { withCredentials: false })
             .then(response => {
                 let data = response.data.data;
                 data.forEach(element => {
